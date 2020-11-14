@@ -41,11 +41,9 @@ public class Main {
 			System.out.println("Result:          " + newStr);
 			scanner.close();
 		} 
-        catch (Exception e)
-        {
-        	System.out.println(e);
-        }
-		
+        catch (Exception e) {
+			System.out.println(e);
+		}
 	}
 
 }

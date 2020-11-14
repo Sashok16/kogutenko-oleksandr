@@ -155,9 +155,12 @@ public class HelperClassWithString
                    || line.charAt(i) == ','
                    || line.charAt(i) == ','
                    || line.charAt(i) == '\0'
-						|| line.charAt(i) == ',' && line.charAt(i + 1) == ' ' || line.charAt(i) == '!' && line.charAt(i + 1) == ' '
-						|| line.charAt(i) == '?' && line.charAt(i + 1) == ' ' || line.charAt(i) == '\n'
-                   )
+						|| line.charAt(i) == ',' && line.charAt(i + 1) == ' '
+						|| line.charAt(i) == '!' && line.charAt(i + 1) == ' '
+						|| line.charAt(i) == '?' && line.charAt(i + 1) == ' '
+						|| line.charAt(i) == '\n'
+						|| line.charAt(i) == '\0' && line.charAt(i) == '\n'
+				)
                 {
                 	index[indx++] = i;
                 }

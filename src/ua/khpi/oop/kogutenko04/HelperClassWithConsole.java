@@ -1,9 +1,12 @@
 package ua.khpi.oop.kogutenko04;
 
+import ua.khpi.oop.kogutenko03.HelperClassWithString;
+
 import java.lang.StringBuilder;
 import java.text.SimpleDateFormat;
 import java.util.Collections;
 import java.util.Date;
+import java.util.Scanner;
 
 /**
  * The type Helper class with console.
@@ -53,6 +56,12 @@ public class HelperClassWithConsole {
 				+ length.getClass().getSimpleName() + " 'length' has '" + getLength() + "'";
 	}
 
+	public void setInfoHelperObject(String str)
+	{
+		setStr(str);
+		setCount(CountWordsInHelper());
+		setLength(str.length());
+	}
 	/**
 	 * Sets length.
 	 *
@@ -217,6 +226,26 @@ public class HelperClassWithConsole {
 		System.out.println(formatDate.format(date) + "values of the variables:\n"
 							+ getInfoOfHelperObject());
 
+	}
+
+	public void changedText()
+	{
+		System.out.println();
+		System.out.println("Enter the text. In the text,\nreplace the words of the specified length with the specified line");
+		Scanner scan = new Scanner(System.in);
+		System.out.print("Main line: ");
+		String mainStr = scan.nextLine();
+		setInfoHelperObject(mainStr);
+		System.out.print("Enter number of letters in word which you want to changed: ");
+		int length = scan.nextInt();
+		System.out.print("Enter word to replace: ");
+		scan.nextLine();
+		String newWord = scan.nextLine();
+		String newStr = replaceAllWordsOn(length, newWord);//new String(mainHelperStr.replaceAllWordsOn(length, newWord));
+		System.out.println("----------------------------------------------");
+		System.out.println("No changed line: " + mainStr);
+		System.out.println("Result:          " + newStr);
+		//scan.close();
 	}
 
 }

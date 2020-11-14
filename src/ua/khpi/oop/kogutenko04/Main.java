@@ -43,8 +43,8 @@ public class Main {
 		boolean check = true, checkHelpLine = true;
 		String input, nikname;
 		HelperClassWithConsole helper = new HelperClassWithConsole();
-
-		try (Scanner scanner = new Scanner(System.in))
+		Scanner scanner = new Scanner(System.in);
+		try
 		{
 			System.out.print("Input your nikname: ");
 			nikname = scanner.nextLine();
@@ -58,66 +58,48 @@ public class Main {
 							+ "Such commands are present so far:\n"
 							+ "\t-h | -help  \t-\t command for summary information about other commands (important to remmember!)\n"
 							+ "\t-d | -debug \t-\t file debugger command\n"
-							+ "\tchtext\t-\t changed the text as in the past lab work (lab work 3)\n");
+							+ "\tchtext\t-\t changed the text as in the past lab work (lab work 3)\n"
+					        + "\texit  \t-\t exit form program\n");
 					checkHelpLine = false;
 				}
 				System.out.print(nikname + "@" + nikname + ": ");
 				input = scanner.nextLine();
 				switch (input) {
-				case " ": {
-					break;
-				}
-				case "-h": {
-					helper.printHelpInfo();
-					break;
-				}
-				case "-help": {
-					helper.printHelpInfo();
-					break;
-				}
-				case "-d": {
-					helper.debuggerInHelper();
-					break;
-				}
-				case "-debug": {
-					System.out.println("debug");
-					break;
-				}
-				case "chtext": {
-					System.out.println();
-					System.out.println("Enter the text. In the text,\nreplace the words of the specified length with the specified line");
-					try (Scanner scan = new Scanner(System.in))
-					{
-						System.out.print("Main line: ");
-						String mainStr = scan.nextLine();
-						HelperClassWithString mainHelperStr = new HelperClassWithString(mainStr);
-
-						System.out.print("Enter number of letters in word which you want to changed: ");
-						int length = scan.nextInt();
-
-						System.out.print("Enter word to replace: ");
-						scan.nextLine();
-						String newWord = scan.nextLine();
-
-
-						String newStr = mainHelperStr.replaceAllWordsOn(length, newWord);//new String(mainHelperStr.replaceAllWordsOn(length, newWord));
-						System.out.println("----------------------------------------------");
-						System.out.println("No changed line: " + mainStr);
-						System.out.println("Result:          " + newStr);
+					case " ": {
+						break;
 					}
-					catch (Exception e)
-					{
-						System.out.println(e);
+					case "-h": {
+						helper.printHelpInfo();
+						break;
 					}
-					break;
-				}
-				default: {
-					System.out.println("(" + input + ") I don't know this command :(");
-					break;
-				}
+					case "-help": {
+						helper.printHelpInfo();
+						break;
+					}
+					case "-d": {
+						helper.debuggerInHelper();
+						break;
+					}
+					case "-debug": {
+						helper.debuggerInHelper();
+						break;
+					}
+					case "chtext": {
+						helper.changedText();
+						break;
+					}
+					case "exit":
+					{
+						check = false;
+						break;
+					}
+					default: {
+						System.out.println("(" + input + ") I don't know this command :(");
+						break;
+					}
 				}
 			}
-			scanner.close();
+			System.out.println("GOOD BEY!!!");
 		} catch (Exception e) {
 			System.out.println(e);
 			check = false;
