@@ -1,4 +1,4 @@
-package ua.khpi.oop.kogutenko05;
+package ua.khpi.oop.kogutenko06;
 
 
 import java.util.Iterator;

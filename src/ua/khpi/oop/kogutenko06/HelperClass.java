@@ -1,4 +1,4 @@
-package ua.khpi.oop.kogutenko05;
+package ua.khpi.oop.kogutenko06;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -239,16 +239,12 @@ public class HelperClass extends Object{
 	 * Print help info.
 	 */
 	public void printHelpInfo() {
-		System.out.println("Hello, my name is Alex Kogutenko\n"
-				+ "I am from Ukrain and studing at NTU \"KHPI\"\n"
-				+ "This is a test console-project with a debug programs.\n"
-				+ "Such commands are present so far:\n"
-				+ "\t-h | -help   \t-\t command for summary information about other commands (important to remmember!)\n"
-				+ "\t-d | -debug  \t-\t file debugger command\n"
-				+ "\tchtext       \t-\t changed the text as in the past lab work (lab work 3)\n"
-				+ "\tshow         \t-\t show reserved array.\n"
-				+ "\tedit         \t-\t edit reserved array.\n"
-				+ "\texit         \t-\t exit form program\n");
+		System.out.println("Such commands are present so far:\n"
+				+ "\t-h | -help  \t-\t command for summary information about other commands (important to remember!)\n"
+				+ "\t-d | -debug \t-\t file debugger command\n"
+				+ "\tchtext\t-\t changed the text as in the past lab work (lab work 3)\n"
+				+ "\tshow  \t-\t show and edit array of changed texts"
+				+ "\texit  \t-\t exit form program\n");
 		//System.out.println("Tap any key...");
 	}
 

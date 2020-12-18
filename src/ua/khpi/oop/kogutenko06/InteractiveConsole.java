@@ -1,4 +1,4 @@
-package ua.khpi.oop.kogutenko05;
+package ua.khpi.oop.kogutenko06;
 
 import java.util.Scanner;
 
@@ -29,6 +29,7 @@ public class InteractiveConsole
                             + "\tchtext       \t-\t changed the text as in the past lab work (lab work 3)\n"
                             + "\tshow         \t-\t show reserved array.\n"
                             + "\tedit         \t-\t edit reserved array.\n"
+                            + "\tanother      \t-\t use external class\n"
                             + "\texit         \t-\t exit form program\n");
                     checkHelpLine = false;
                 }
@@ -68,6 +69,11 @@ public class InteractiveConsole
                     }
                     case "exit": {
                         check = false;
+                        break;
+                    }
+                    case "another":
+                    {
+
                         break;
                     }
                     default: {

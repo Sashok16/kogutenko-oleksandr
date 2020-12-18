@@ -1,30 +1,7 @@
 package ua.khpi.oop.kogutenko04;
 
-import ua.khpi.oop.kogutenko03.HelperClassWithString;
-
-import java.util.Scanner;
-
 /**
  * The type Main.
- */
-//Look I was gonna go easy on you and not to hurt your feelings but I am only going to get this one chance
-/*
- * Використовуючи програму рішення завдання лабораторної роботи №3, 
- * відповідно до прикладної задачі забезпечити обробку команд користувача у вигляді текстового меню:
- *
- * -введення даних;
- * -перегляд даних;
- * -виконання обчислень;
- * -відображення результату;
- * -завершення програми і т.д.
- * 
- * Забезпечити обробку параметрів командного рядка для визначення режиму роботи програми:
- * -параметр "-h" чи "-help": відображається інформація про автора програми, 
- *  призначення (індивідуальне завдання), детальний опис режимів роботи 
- *  (пунктів меню та параметрів командного рядка);
- * -параметр "-d" чи "-debug": в процесі роботи програми відображаються додаткові дані, 
- *  що полегшують налагодження та перевірку працездатності програми: 
- *  діагностичні повідомлення, проміжні значення змінних, значення тимчасових змінних та ін.
  */
 public class Main {
 
@@ -35,74 +12,62 @@ public class Main {
 	 */
 	public static void main(String[] args)
 	{
-		start_();
+		String[] args_ = new String[2];
+		args = args_;
+		args[0] = "-h";
+		args[1] = "-d";
+		System.out.println(args[0]);
+		HelperClass helper = new HelperClass();
+		boolean help = false;
+		boolean debug = false;
+		int index;
+		loop:
+		for (index = 0; index < args.length; index++) {
+			String opt = args[index];
+			switch (opt) {
+				case "-h":
+					help = true;
+					System.out.println("Helper");
+					break;
+				case "-d":
+					debug = true;
+					System.out.println("Debuger");
+					break;
+				case "-help":
+					help = true;
+					break;
+				case "-debug":
+					debug = true;
+					break;
+				default:
+					if (!opt.isEmpty() && opt.charAt(0) == '-') {
+						error("Unknown option: " + opt);
+					}
+					break loop;
+			}
+		}
+
+		if(help == false && debug == false)
+		{
+			helper.changedText();
+		} else if (help == true && debug == false) {
+			helper.printHelpInfo();
+			helper.changedText();
+		} else if (help == false && debug == true) {
+			helper.changedText();
+			helper.debuggerInHelper();
+		} else if (help == true && debug == true) {
+			helper.printHelpInfo();
+			helper.changedText();
+			helper.debuggerInHelper();
+		}
 	}
 
-	private static void start_()
-	{
-		boolean check = true, checkHelpLine = true;
-		String input, nikname;
-		HelperClassWithConsole helper = new HelperClassWithConsole();
-		Scanner scanner = new Scanner(System.in);
-		try
-		{
-			System.out.print("Input your nikname: ");
-			nikname = scanner.nextLine();
-			//clearConsole();
-			while (check)
-			{
-				if (checkHelpLine) {
-					System.out.println("Hello, my name is Alex Kogutenko\n"
-							+ "I am from Ukrain and studing at NTU \"KHPI\"\n"
-							+ "This is a test console-project with a debug programs.\n"
-							+ "Such commands are present so far:\n"
-							+ "\t-h | -help  \t-\t command for summary information about other commands (important to remmember!)\n"
-							+ "\t-d | -debug \t-\t file debugger command\n"
-							+ "\tchtext\t-\t changed the text as in the past lab work (lab work 3)\n"
-					        + "\texit  \t-\t exit form program\n");
-					checkHelpLine = false;
-				}
-				System.out.print(nikname + "@" + nikname + ": ");
-				input = scanner.nextLine();
-				switch (input) {
-					case " ": {
-						break;
-					}
-					case "-h": {
-						helper.printHelpInfo();
-						break;
-					}
-					case "-help": {
-						helper.printHelpInfo();
-						break;
-					}
-					case "-d": {
-						helper.debuggerInHelper();
-						break;
-					}
-					case "-debug": {
-						helper.debuggerInHelper();
-						break;
-					}
-					case "chtext": {
-						helper.changedText();
-						break;
-					}
-					case "exit":
-					{
-						check = false;
-						break;
-					}
-					default: {
-						System.out.println("(" + input + ") I don't know this command :(");
-						break;
-					}
-				}
-			}
-			System.out.println("GOOD BEY!!!");
-		} catch (Exception e) {
-			System.out.println(e);
-			check = false;
+	private static void error(String message) {
+		if (message != null) {
+			System.err.println(message);
 		}
+		System.err.println("usage: myapp [-h] [-d]");
+		System.exit(1);
 	}
 }

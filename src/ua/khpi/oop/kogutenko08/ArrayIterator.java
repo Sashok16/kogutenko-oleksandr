@@ -1,17 +1,14 @@
-package ua.khpi.oop.kogutenko05;
+package ua.khpi.oop.kogutenko08;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.ConcurrentModificationException;
 import java.util.Iterator;
-import java.util.NoSuchElementException;
 
 /**
  * Итератор для массива
  *
  * @param <E> the type parameter
  */
-public class ArrayIterator<E> implements Iterator<E>/*, Serializable, Array<E>*/{
+public class ArrayIterator<E> implements Iterator<E>, Serializable/* Array<E>*/{
     private int index = 0;
     /**
      * The Values.

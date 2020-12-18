@@ -1,4 +1,5 @@
-package ua.khpi.oop.kogutenko05;
+package ua.khpi.oop.kogutenko08;
+
 import java.util.Iterator;
 
 
@@ -7,7 +8,7 @@ import java.util.Iterator;
  *
  * @param <E> the type parameter
  */
-public class SaveArray<E extends Object> implements Array<E>{
+public class SaveArray<E extends Object> implements Array<E>  {
 
     private E[] arrayData;
     //private ;
@@ -15,7 +16,7 @@ public class SaveArray<E extends Object> implements Array<E>{
     /**
      * Instantiates a new Save array.
      */
-    public SaveArray()
+    SaveArray()
     {
         arrayData = (E[]) new Object[0];
     }
@@ -24,10 +25,10 @@ public class SaveArray<E extends Object> implements Array<E>{
     public void add(E el) {
         try
         {
-                E[] temp = arrayData;
-                arrayData = (E[]) new Object[temp.length + 1];
-                System.arraycopy(temp, 0 , arrayData, 0, temp.length);
-                arrayData[arrayData.length - 1] = el;
+            E[] temp = arrayData;
+            arrayData = (E[]) new Object[temp.length + 1];
+            System.arraycopy(temp, 0 , arrayData, 0, temp.length);
+            arrayData[arrayData.length - 1] = el;
         }
         catch (ClassCastException ex)
         {
@@ -41,34 +42,6 @@ public class SaveArray<E extends Object> implements Array<E>{
             remove(size()-1);
         }
         arrayData = (E[]) new Object[0];
-    }
-
-    private int findIndexOfElement(E el)
-    {
-        int index = 0;
-        if(size() > 0) {
-            /*for(E elem : arrayData)
-            {
-                if(elem == el)
-                {
-                    return index;
-                }
-                index++;
-            }*/
-            for(;index < size(); index++) {
-                System.out.println("-" + arrayData[index] + "---" + el.toString() + "-");
-                if(arrayData[index] == el) {
-                    return index;
-                }
-            }
-            return -1;
-        }
-        else if (size() == 0) {
-            return index;
-        }
-        else {
-            return -1;
-        }
     }
 
     @Override
@@ -186,15 +159,15 @@ public class SaveArray<E extends Object> implements Array<E>{
     @Override
     public String toString()
     {
-        String out = "size of reserved array is " + size() + "\n Content:\n";
+        String out = "";
         if(size() == 0)
         {
-            out += "Array is empty";
+            out += "\nArray is empty";
         }else{
             int i = 1;
             for(E el : arrayData)
             {
-                out = out + i++ + " : " + (String)el + "\n";
+                out = el.toString() + "\n";
             }
         }
         return out;
@@ -221,3 +194,4 @@ public class SaveArray<E extends Object> implements Array<E>{
         return new ArrayIterator<>(arrayData);
     }
 }
+

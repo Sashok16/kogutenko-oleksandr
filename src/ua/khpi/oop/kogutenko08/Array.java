@@ -1,5 +1,6 @@
-package ua.khpi.oop.kogutenko05;
+package ua.khpi.oop.kogutenko08;
 
+import ua.khpi.oop.kogutenko07.Shop;
 
 import java.util.Iterator;
 

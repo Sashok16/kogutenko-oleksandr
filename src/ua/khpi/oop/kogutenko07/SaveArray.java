@@ -1,4 +1,5 @@
-package ua.khpi.oop.kogutenko05;
+package ua.khpi.oop.kogutenko07;
+
 import java.util.Iterator;
 
 
@@ -7,7 +8,7 @@ import java.util.Iterator;
  *
  * @param <E> the type parameter
  */
-public class SaveArray<E extends Object> implements Array<E>{
+public class SaveArray<E extends Object> implements Array<E> {
 
     private E[] arrayData;
     //private ;
@@ -15,7 +16,7 @@ public class SaveArray<E extends Object> implements Array<E>{
     /**
      * Instantiates a new Save array.
      */
-    public SaveArray()
+    SaveArray()
     {
         arrayData = (E[]) new Object[0];
     }
@@ -41,34 +42,6 @@ public class SaveArray<E extends Object> implements Array<E>{
             remove(size()-1);
         }
         arrayData = (E[]) new Object[0];
-    }
-
-    private int findIndexOfElement(E el)
-    {
-        int index = 0;
-        if(size() > 0) {
-            /*for(E elem : arrayData)
-            {
-                if(elem == el)
-                {
-                    return index;
-                }
-                index++;
-            }*/
-            for(;index < size(); index++) {
-                System.out.println("-" + arrayData[index] + "---" + el.toString() + "-");
-                if(arrayData[index] == el) {
-                    return index;
-                }
-            }
-            return -1;
-        }
-        else if (size() == 0) {
-            return index;
-        }
-        else {
-            return -1;
-        }
     }
 
     @Override
@@ -194,7 +167,7 @@ public class SaveArray<E extends Object> implements Array<E>{
             int i = 1;
             for(E el : arrayData)
             {
-                out = out + i++ + " : " + (String)el + "\n";
+                out = out + i++ + " : \n" + (String)el + "\n";
             }
         }
         return out;

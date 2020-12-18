@@ -1,4 +1,5 @@
-package ua.khpi.oop.kogutenko05;
+package ua.khpi.oop.kogutenko06;
+
 import java.util.Iterator;
 
 
@@ -7,7 +8,7 @@ import java.util.Iterator;
  *
  * @param <E> the type parameter
  */
-public class SaveArray<E extends Object> implements Array<E>{
+public class SaveArray<E extends Object> implements Array<E> {
 
     private E[] arrayData;
     //private ;
@@ -15,7 +16,7 @@ public class SaveArray<E extends Object> implements Array<E>{
     /**
      * Instantiates a new Save array.
      */
-    public SaveArray()
+    SaveArray()
     {
         arrayData = (E[]) new Object[0];
     }
