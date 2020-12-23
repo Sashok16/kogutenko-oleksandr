@@ -1,5 +1,9 @@
 package ua.khpi.oop.kogutenko06;
 
+
+import Laba3.Helper;
+
+import java.io.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Scanner;
@@ -415,4 +419,65 @@ public class HelperClass extends Object{
 		}
 	}
 
+	public void serialization(String savefile)
+	{
+		File file = new File(savefile);///pathname
+		try {
+			FileOutputStream fos = new FileOutputStream(file);
+			ObjectOutputStream oos = new ObjectOutputStream(fos);
+
+			oos.writeObject(save.size());
+			System.out.println("size :" + save.size());
+			for (String el : save)
+			{
+				oos.writeObject(el);
+				System.out.println(el);
+			}
+		}
+		catch(FileNotFoundException e)
+		{
+			e.printStackTrace();
+		}
+		catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void deserializtion(String savefile) {
+		//Array<Shop> container = new SaveArray<>();
+		File file = new File(savefile);///pathname
+		if(file.length() != 0) {
+			try {
+				FileInputStream fis = new FileInputStream(file);///pathname
+				ObjectInputStream ois = new ObjectInputStream(fis);
+				Integer count = ois.readInt();
+				for (int i = 0; i < count; i++)
+				{
+					save.add((String) ois.readObject());
+					System.out.println((String)ois.readObject());
+				}
+
+			} catch (FileNotFoundException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			} catch (ClassNotFoundException e) {
+				e.printStackTrace();
+			}
+		}
+		else
+		{
+			System.out.println("File is empty");
+		}
+	}
+
+	public void anotherClass()
+	{
+		Helper helper = new Helper();
+		StringBuilder s;
+		s = helper.AddTextSB();//
+		helper.PrintLineSB(s);//
+		s =helper.Task6(s);//
+		helper.PrintNewLine(s);//
+	}
 }

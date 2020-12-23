@@ -1,6 +1,8 @@
 package ua.khpi.oop.kogutenko08;
 
 import java.io.*;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 import java.beans.XMLDecoder;
 import java.beans.XMLEncoder;
@@ -13,10 +15,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-
-import javax.swing.JButton;
-import javax.swing.JFileChooser;
-import javax.swing.filechooser.FileNameExtensionFilter;
 /**
  * The type Helper class with console.
  */
@@ -87,13 +85,14 @@ public class HelperClass extends Object{
         try{
             XMLEncoder encoder = new XMLEncoder(
                     new BufferedOutputStream(
-                            new FileOutputStream( ConsoleFile.MenuFillOut()+".xml")));
+                            new FileOutputStream( ConsoleFile.MenuFillOut())));
 
             encoder.writeObject(save.size());
 
-            for(Shops shop : save)
+            for(Shops shop : save) {
                 encoder.writeObject(shop);
-
+                encoder.writeObject(shop.getDescription());
+            }
 
             encoder.close();
         } catch (FileNotFoundException e) {
@@ -128,13 +127,17 @@ public class HelperClass extends Object{
         try{
                 XMLDecoder decoder = new XMLDecoder(
                     new BufferedInputStream(
-                            new FileInputStream(ConsoleFile.MenuFillIn())));
+                            new FileInputStream(ConsoleFile.MenuFillIn())
+                    )
+                );
 
             int count = (int) decoder.readObject();
 
             for(int i = 0; i < count; i++)
             {
                 Shops shops = (Shops)decoder.readObject();
+                Object obj = decoder.readObject();
+                shops.setDescription((Map<String, String>) obj);
                 save.add(shops);
             }
             decoder.close();

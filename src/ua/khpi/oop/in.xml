@@ -1,31 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <java version="11.0.8" class="java.beans.XMLDecoder">
- <int>2</int>
+ <int>3</int>
  <object class="ua.khpi.oop.kogutenko08.Shops" id="Shops0">
   <void property="count">
    <int>12</int>
   </void>
   <void property="date">
    <void property="year">
-    <int>2001</int>
+    <int>2020</int>
    </void>
   </void>
-  <void property="description">
-   <string>it man</string>
+  <void id="HashMap0" property="description">
+   <void method="put">
+    <string>color1</string>
+    <string>red</string>
+   </void>
+   <void method="put">
+    <string>color2</string>
+    <string>green</string>
+   </void>
   </void>
   <void property="id">
    <int>1</int>
   </void>
   <void property="name">
-   <string>man</string>
+   <string>appple</string>
   </void>
   <void property="unit">
    <string>kg</string>
   </void>
  </object>
+ <object idref="HashMap0"/>
  <object class="ua.khpi.oop.kogutenko08.Shops" id="Shops1">
   <void property="count">
-   <int>12</int>
+   <int>40</int>
   </void>
   <void property="date">
    <void property="day">
@@ -35,20 +43,63 @@
     <int>2</int>
    </void>
    <void property="year">
-    <int>2002</int>
+    <int>2020</int>
    </void>
   </void>
-  <void property="description">
-   <string>it girl</string>
+  <void id="HashMap1" property="description">
+   <void method="put">
+    <string>color1</string>
+    <string>red</string>   </void>
+   <void method="put">
+    <string>smell</string>
+    <string>testy</string>
+   </void>
   </void>
   <void property="id">
    <int>2</int>
   </void>
   <void property="name">
-   <string>boy</string>
+   <string>tomato</string>
   </void>
   <void property="unit">
    <string>kg</string>
   </void>
  </object>
- </java>
+ <object idref="HashMap1"/>
+ <object class="ua.khpi.oop.kogutenko08.Shops" id="Shops2">
+  <void property="count">
+   <int>376</int>
+  </void>
+  <void property="date">
+   <void property="day">
+    <int>4</int>
+   </void>
+   <void property="month">
+    <int>4</int>
+   </void>
+   <void property="year">
+    <int>2020</int>
+   </void>
+  </void>
+  <void id="HashMap2" property="description">
+   <void method="put">
+    <string>color1</string>
+    <string>red_red</string>
+   </void>
+   <void method="put">
+    <string>color2</string>
+    <string>black_red</string>
+   </void>
+  </void>
+  <void property="id">
+   <int>3</int>
+  </void>
+  <void property="name">
+   <string>cherry</string>
+  </void>
+  <void property="unit">
+   <string>kg</string>
+  </void>
+ </object>
+ <object idref="HashMap2"/>
+</java>
