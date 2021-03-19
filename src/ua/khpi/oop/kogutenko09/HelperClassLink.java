@@ -29,8 +29,7 @@ public class HelperClassLink<T> implements Iterable<T> {
             N = 0;
         }
 //////////////////////////////////////////////////////////
-        private class Node
-        {
+        private class Node {
             private T data;
             private Node next;
 
@@ -212,13 +211,13 @@ public class HelperClassLink<T> implements Iterable<T> {
             return N == 0;
         }
 
-        public Iterator<T> iterator(){
+    public Iterator<T> iterator(){
             System.out.println("\n\"iterator\" from HelperClassLink\n");
             return new LinkedListIterator();
         }
 
-        @Override
-        public String toString() {
+    @Override
+    public String toString() {
             System.out.println("\n\"toString\" from HelperClassLink\n");
             StringBuilder s = new StringBuilder();
             for (T item : this)
@@ -239,7 +238,7 @@ public class HelperClassLink<T> implements Iterable<T> {
             System.out.println(str);
         }
 
-        private Node findByIndex(int index) {
+    private Node findByIndex(int index) {
             System.out.println("\n\"findByIndex\" from HelperClassLink\n");
             if (index < 0 || index > N - 1) {
                 throw new IndexOutOfBoundsException();
@@ -263,7 +262,7 @@ public class HelperClassLink<T> implements Iterable<T> {
             }
             throw new IndexOutOfBoundsException();
         }
-        private Node findNodeBefore(T value) {
+    private Node findNodeBefore(T value) {
             System.out.println("\n\"findNodeBefore\" from HelperClassLink\n");
             if (firstElem.data == value) {
                 Node res = new Node(firstElem.data, firstElem.next);
@@ -280,7 +279,7 @@ public class HelperClassLink<T> implements Iterable<T> {
             return null;
         }
 
-        private Node findNodeBeforeByIndex(int index) {
+    private Node findNodeBeforeByIndex(int index) {
             System.out.println("\n\"findNodeBeforeByIndex\" from HelperClassLink\n");
             if (index <= 0 || index > N - 1) {
                 return null;
@@ -350,54 +349,9 @@ public class HelperClassLink<T> implements Iterable<T> {
         }
 
     /**
-     * Serialization txt.
-     */
-    public void serializationTXT(){
-        File file = ConsoleFile.MenuFillOut(".bin");///pathname
-        try {
-            FileOutputStream fos = new FileOutputStream(file);
-            ObjectOutputStream oos = new ObjectOutputStream(fos);
-
-            oos.writeObject(this.size());
-            System.out.println("size :" + this.size());
-            for (T el : this)
-            {
-                oos.writeObject(el);
-            }
-        }
-        catch(FileNotFoundException e)
-        {
-            e.printStackTrace();
-        }
-        catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    /**
-     * Deserializtion txt.
-     */
-    public void deserializtionTXT(){
-            File file = ConsoleFile.MenuFillIn(".txt");///pathname
-            try {
-                FileInputStream fis = new FileInputStream(file);///pathname
-                ObjectInputStream ois = new ObjectInputStream(fis);
-                Integer count = ois.readInt();
-                for(int i = 0; i < count; i++)
-                {
-                    this.add((T) ois.readObject());
-                }
-
-            }
-            catch(FileNotFoundException e) {e.printStackTrace();}
-            catch (IOException e) {e.printStackTrace();	}
-            catch (ClassNotFoundException e) {e.printStackTrace();	}
-        }
-
-    /**
      * Deserializtion bin.
      */
-    public void deserializtionBIN(){
+    public void deserializationBIN(){
             File file = ConsoleFile.MenuFillIn(".bin");///pathname
             try {
                 FileInputStream fis = new FileInputStream(file);///pathname
@@ -417,7 +371,7 @@ public class HelperClassLink<T> implements Iterable<T> {
     /**
      * Deserializtion xml.
      */
-    public void deserializtionXML(){
+    public void deserializationXML(){
             try{
                 XMLDecoder decoder = new XMLDecoder(
                         new BufferedInputStream(
@@ -439,6 +393,16 @@ public class HelperClassLink<T> implements Iterable<T> {
             }
             catch(FileNotFoundException e) {e.printStackTrace();}
         }
+
+
+
+    public Array<T> toOwnArray() {
+        Array<T> save = new SaveArray<>();
+        for(int i = 0; i > N; i++) {
+            save.add(this.get(i));
+        }
+        return save;
+    }
 }
 
 

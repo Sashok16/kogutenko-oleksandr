@@ -57,6 +57,7 @@ public class ConsoleFile {
                 {
                     case 1:
                         System.out.println("\nway: " + file.getPath()); //getAbsolutePath
+                        // way: D:/...
                         break;
                     case 2:
                         int a = 0;
@@ -68,13 +69,20 @@ public class ConsoleFile {
                             a++;
                             System.out.printf("%-25s  ", file2.getName());
                         } ;///////////
+
+                        /*
+                        files:
+                        file1   file4
+                        file2   file5
+                        file3   file6
+                         */
                         break;
                     case 3:
                         file = file.getParentFile();
+                        // cd ..
                         break;
                     case 4:
                         System.out.print("enter name of file: ");
-                        //in.nextLine();
                         file = new File(file.getAbsolutePath() + "/" + in.nextLine());
                         if (file.isFile() == true)
                             return file;
@@ -83,12 +91,22 @@ public class ConsoleFile {
                             System.out.print("NOT FOUND");
                             file = file.getParentFile();
                         }
+
+
+                        /*
+                            enter name of file: file.txt
+                            take file for reading
+                         */
                         break;
                     case 5:
                         System.out.print("enter name of directory: ");
                         String s = in.nextLine();
                         File dir = new File(file.getPath()+"/" + in.nextLine());
                         System.out.println("create directory: " + dir.mkdirs());
+                        /*
+                        enter name of directory:  /somedirect
+                        and make new direct here
+                         */
                         break;
                     case 6:
                         System.out.print("enter way: ");
@@ -187,10 +205,12 @@ public class ConsoleFile {
                         break;
                     case 5:
                         System.out.print("enter name of file without extension:  ");
-                        //in.nextLine();
+                        in.nextLine();
                         file = new File(file.getAbsolutePath() + "/" + in.nextLine() + fileExtension);
-                        if (file.isFile() == true)
+                        if (file.isFile() == true) {
+                            System.out.println("file found");
                             return file;
+                        }else System.out.println("file NOT found");
                         break;
                     case 6:
                     {
@@ -212,8 +232,8 @@ public class ConsoleFile {
             catch(Exception e)
             {
                 System.out.println(" EROR EROR EROR EROR EROR EROR EROR EROR EROR \n");
-                //System.out.print("\n\n\nТрапилась помилка. Але тепер все добре!!\n\n");
-                System.out.println(e);}
+                System.out.println(e);
+            }
         }
     }
 }

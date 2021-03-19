@@ -131,4 +131,14 @@ public class Date implements Serializable {
             setYear(2020);
     }
 
+    public void setDate(String date)
+    {
+       String[] dateBuff = date.split("\\.");
+       setDate(
+               Integer.parseInt(dateBuff[0]),
+               Integer.parseInt(dateBuff[1]),
+               Integer.parseInt(dateBuff[2])
+       );
+    }
+
 }

@@ -1,7 +1,7 @@
 package ua.khpi.oop.kogutenko06;
 
 
-import Laba3.Helper;
+//import Grisha.Laba3.Helper;
 
 import java.io.*;
 import java.text.SimpleDateFormat;
@@ -471,13 +471,13 @@ public class HelperClass extends Object{
 		}
 	}
 
-	public void anotherClass()
-	{
-		Helper helper = new Helper();
-		StringBuilder s;
-		s = helper.AddTextSB();//
-		helper.PrintLineSB(s);//
-		s =helper.Task6(s);//
-		helper.PrintNewLine(s);//
-	}
+//	public void anotherClass()
+//	{
+//		Helper helper = new Helper();
+//		StringBuilder s;
+//		s = helper.AddTextSB();//
+//		helper.PrintLineSB(s);//
+//		s =helper.Task6(s);//
+//		helper.PrintNewLine(s);//
+//	}
 }

@@ -181,7 +181,6 @@ public class ConsoleFile {
             catch(Exception e)
             {
                 System.out.println(" EROR EROR EROR EROR EROR EROR EROR EROR EROR \n");
-                System.out.print("\n\n\nТрапилась помилка. Але тепер все добре!!\n\n");
                 System.out.println(e);}
         }
     }

@@ -43,7 +43,7 @@ public class Shops implements Serializable {
     public String getDescriptionInfo() {
         String str = "";
         for(Map.Entry<String, String> entry: description.entrySet())
-            str += entry.getKey() + " - " + entry.getValue() + ", ";
+            str += entry.getKey() + " - " + entry.getValue() + ",";
         return str;
     }
 
@@ -57,6 +57,18 @@ public class Shops implements Serializable {
         this.description.put(key,val);
     }
 
+    public void setDescription(String description) {
+        String key = null, val = null, strOn = null;
+        String[] str = description.split(",");
+        String[] strAdd;
+        int count = 0;
+        for(int i = 0; i < str.length; i++) {
+            strAdd = str[i].split(" - ");
+            key = strAdd[0];
+            val = strAdd[1];
+            this.description.put(key,val);
+        }
+    }
     /**
      * Instantiates a new Shops.
      */
@@ -68,6 +80,10 @@ public class Shops implements Serializable {
         //description = "";
     }
 
+    public Shops(String str) {
+
+    }
+
     /**
      * Instantiates a new Shops.
      *
@@ -76,16 +92,15 @@ public class Shops implements Serializable {
      * @param unit  the unit
      * @param count the count
      * @param date  the date
-     * @param keyD  the key d
-     * @param valD  the val d
+     * @param description the description
      */
-    public Shops(int id, String name, String unit, int count, Date date, String keyD, String valD) {
+    public Shops(int id, String name, String unit, int count, Date date, Map<String, String> description) {
         this.id = id;
         this.name = name;
         this.unit = unit;
         this.count = count;
         this.date.setDate(date.getDay(),date.getMonth(),date.getYear());
-        setDescription(keyD,valD);
+        setDescription(description);
     }
 
     /**
@@ -178,19 +193,25 @@ public class Shops implements Serializable {
         this.date = date;
     }
 
-    public String toString()
-    {
-        String info = "id: " + id + " | name: " + name + " | unit: "
-                    + unit + " | count: " + count + " | date: " + date.GetDate()
-                    + " | description: " + getDescriptionInfo() + "\n";
+    public void setDate(String date) {
+        this.date.setDate(date);
+    }
+
+    public String toString() {
+        String info = "id: "          + id +
+                   " | name: "        + name +
+                   " | unit: "        + unit +
+                   " | count: "       + count +
+                   " | date: "        + date.GetDate() +
+                   " | discription: " + getDescriptionInfo() +
+                   "\n";
         return info;
     }
 
     /**
      * Add.
      */
-    public void add()
-    {
+    public void add(){
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter info:\n");
 
@@ -233,4 +254,6 @@ public class Shops implements Serializable {
             }
         }
     }
+
+
 }

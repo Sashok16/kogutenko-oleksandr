@@ -56,11 +56,11 @@ public class InteractiveConsole
                         helper.serialization("file.dat");
                         break;
                     }
-                    case "another":
-                    {
-                        helper.anotherClass();
-                        break;
-                    }
+//                    case "another":
+//                    {
+//                        helper.anotherClass();
+//                        break;
+//                    }
                     default: {
                         System.out.println("(" + input + ") I don't know this command :(");
                         break;

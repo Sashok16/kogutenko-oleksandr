@@ -29,14 +29,15 @@ public class HelperClass extends Object{
      */
     public HelperClass() { }
 
+    public HelperClass(Array<Shops> save) { this.save = save; }
+
     /**
      * Gets info of helper object.
      *
      * @return the info of helper object
      */
     @Override
-    public String toString()
-    {
+    public String toString() {
         String str = "";
         for(Shops el : save)
         {
@@ -48,8 +49,7 @@ public class HelperClass extends Object{
     /**
      * Print saves.
      */
-    public void printSaves()
-    {
+    public void printSaves() {
         String str = "";
         for(Shops shops : save)
         {
@@ -63,8 +63,7 @@ public class HelperClass extends Object{
      *
      * @throws Exception the exception
      */
-    public void add()
-    {
+    public void add() {
         Shops shops = new Shops();
         shops.add();
         save.add(shops);
@@ -73,8 +72,7 @@ public class HelperClass extends Object{
     /**
      * Remove.
      */
-    public void remove()
-    {
+    public void remove() {
         printSaves();
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter number of id: ");
@@ -86,8 +84,7 @@ public class HelperClass extends Object{
     /**
      * Serialization.
      */
-    public void serialization()
-    {
+    public void serialization() {
         //File file = ConsoleFile.MenuFillOut();
         try{
             XMLEncoder encoder = new XMLEncoder(
@@ -136,8 +133,7 @@ public class HelperClass extends Object{
     /**
      * Deserializtion xml.
      */
-    public void deserializtionXML()
-    {
+    public void deserializtionXML() {
         try{
             XMLDecoder decoder = new XMLDecoder(
                     new BufferedInputStream(

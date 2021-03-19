@@ -1,5 +1,6 @@
 package ua.khpi.oop.kogutenko09;
 
+import java.io.*;
 import java.util.Scanner;
 
 /**
@@ -8,7 +9,12 @@ import java.util.Scanner;
 public class InteractiveConsole
 {
     private String  nikname;
-
+    int answerDeserialization = 0;
+    boolean check = true, checkChoicelist = false, list = true;
+    String input;
+    HelperClass helper = new HelperClass();
+    HelperClassLink<Shops> helperL = new HelperClassLink<>();
+    Scanner scanner = new Scanner(System.in);
     /**
      * Gets nikname.
      *
@@ -31,13 +37,7 @@ public class InteractiveConsole
      * Start console.
      */
     public void startConsole() {
-        int answerDeserialization = 0;
-        boolean check = true, checkChoicelist = false, list = true;
-        String input;
-        HelperClass helper = new HelperClass();
-        HelperClassLink<Shops> helperL = new HelperClassLink<>();
-        Scanner scanner = new Scanner(System.in);
-        try {
+               try {
             System.out.print("Input your nikname: ");
             setNikname(scanner.nextLine());
             while (check) {
@@ -77,17 +77,17 @@ public class InteractiveConsole
                             {
                                 case 1 :
                                 {
-                                    helperL.deserializtionBIN();
+                                    helperL.deserializationBIN();
                                     break;
                                 }
                                 case 2 :
                                 {
-                                    helperL.deserializtionXML();
+                                    helperL.deserializationXML();
                                     break;
                                 }
                                 case 3 :
                                 {
-                                    helperL.deserializtionTXT();
+                                    deserializationTXT();
                                     break;
                                 }
                                 default:
@@ -111,17 +111,17 @@ public class InteractiveConsole
                             {
                                 case 1 :
                                 {
-                                    helperL.deserializtionBIN();
+                                    helperL.deserializationBIN();
                                     break;
                                 }
                                 case 2 :
                                 {
-                                    helperL.deserializtionXML();
+                                    helperL.deserializationXML();
                                     break;
                                 }
                                 case 3 :
                                 {
-                                    helperL.deserializtionTXT();
+                                    deserializationTXT();
                                     break;
                                 }
                                 default:
@@ -296,7 +296,7 @@ public class InteractiveConsole
                                 }
                                 case 3 :
                                 {
-                                    helperL.serializationTXT();
+                                    serializationTXT();
                                     break;
                                 }
                             }
@@ -309,50 +309,29 @@ public class InteractiveConsole
                             helper.serialization();
                         }
                         else {
-                            switch (answerDeserialization)
+                            System.out.println("saved linkedlist");
+                            System.out.println("What save do you want? (1 - .txt; 2 - .bin; 3 - .xml) ");
+                            int answ = scanner.nextInt();
+                            switch (answ)
                             {
-                                case 0:
+                                case 1:
                                 {
-                                    System.out.println("What save do you want? (1 - .txt; 2 - .bin; 3 - .xml) ");
-                                    int answ = scanner.nextInt();
-                                    switch (answ)
-                                    {
-                                        case 1:
-                                        {
-                                            helperL.serializationTXT();
-                                            break;
-                                        }
-                                        case 2:
-                                        {
-                                            helperL.serializationBIN();
-                                            break;
-                                        }
-                                        case 3:
-                                        {
-                                            helperL.serializationXML();
-                                            break;
-                                        }
-                                        default:
-                                        {
-                                            System.out.println("We dont save your array (");
-                                            break;
-                                        }
-                                    }
+                                    serializationTXT();
                                     break;
                                 }
-                                case 1 :
+                                case 2:
                                 {
-                                    helperL.deserializtionBIN();
+                                    helperL.serializationBIN();
                                     break;
                                 }
-                                case 2 :
+                                case 3:
                                 {
-                                    helperL.deserializtionXML();
+                                    helperL.serializationXML();
                                     break;
                                 }
-                                case 3 :
+                                default:
                                 {
-                                    helperL.deserializtionTXT();
+                                    System.out.println("We dont save your array (");
                                     break;
                                 }
                             }
@@ -371,5 +350,74 @@ public class InteractiveConsole
             System.out.println(e);
             check = false;
         }
+    }
+
+    /**
+     * Serialization txt.
+     */
+    public void serializationTXT(){
+        File file = ConsoleFile.MenuFillOut(".txt");///pathname
+        Writer out;
+        try (PrintWriter pw = new PrintWriter(file.getName())) {
+            System.out.println("size :" + helperL.size());
+            //String sb = new String();
+            for (Shops el : helperL)
+            {
+                pw.write(el.toString());
+                System.out.print(el.toString());
+            }
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Deserializtion txt.
+     */
+    public void deserializationTXT(){
+        File file = ConsoleFile.MenuFillIn(".txt");///pathname
+        try {
+            BufferedReader br = new BufferedReader(new InputStreamReader(
+                    new FileInputStream(file)));
+            String line, id = null,
+                    name = null,
+                    unit = null,
+                    count = null,
+                    date = null,
+                    description = null;
+            while ((line = br.readLine()) != null) {
+                if (line.contains("id:")) {
+                    id = line.substring(4, line.indexOf(" | name:"));
+                }
+                if (line.contains("name:")) {
+                    name = line.substring(line.indexOf("name: ") + 6, line.indexOf(" | unit:"));
+                }
+                if (line.contains("unit:")) {
+                    unit = line.substring(line.indexOf("unit:") + 6, line.indexOf(" | count: "));
+                }
+                if(line.contains("count:")){
+                    count = line.substring(line.indexOf("count:") + 7, line.indexOf(" | date: "));
+                }
+                if(line.contains("date:")){
+                    date = line.substring(line.indexOf("date:") + 6, line.indexOf(" | discription: "));
+                }
+                if(line.contains("discription:")){
+                    description = line.substring(line.indexOf("discription:") + 13, line.length() - 1);
+                }
+
+                Shops shop = new Shops();
+                shop.setId(Integer.parseInt(id));
+                shop.setCount(Integer.parseInt(count));
+                shop.setName(name);
+                shop.setDate(date);
+                shop.setUnit(unit);
+                shop.setDescription(description);
+                helperL.add(shop);
+            }
+        }
+        catch(FileNotFoundException e) {e.printStackTrace();}
+        catch (IOException e) {e.printStackTrace();	}
+        //catch (ClassNotFoundException e) {e.printStackTrace();}
     }
 }
