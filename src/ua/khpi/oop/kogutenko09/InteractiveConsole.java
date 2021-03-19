@@ -77,17 +77,17 @@ public class InteractiveConsole
                             {
                                 case 1 :
                                 {
-                                    helperL.deserializtionBIN();
+                                    helperL.deserializationBIN();
                                     break;
                                 }
                                 case 2 :
                                 {
-                                    helperL.deserializtionXML();
+                                    helperL.deserializationXML();
                                     break;
                                 }
                                 case 3 :
                                 {
-                                    helperL.deserializtionTXT();
+                                    helperL.deserializationTXT();
                                     break;
                                 }
                                 default:
@@ -111,17 +111,17 @@ public class InteractiveConsole
                             {
                                 case 1 :
                                 {
-                                    helperL.deserializtionBIN();
+                                    helperL.deserializationBIN();
                                     break;
                                 }
                                 case 2 :
                                 {
-                                    helperL.deserializtionXML();
+                                    helperL.deserializationXML();
                                     break;
                                 }
                                 case 3 :
                                 {
-                                    helperL.deserializtionTXT();
+                                    helperL.deserializationTXT();
                                     break;
                                 }
                                 default:
@@ -309,50 +309,29 @@ public class InteractiveConsole
                             helper.serialization();
                         }
                         else {
-                            switch (answerDeserialization)
+                            System.out.println("saved linkedlist");
+                            System.out.println("What save do you want? (1 - .txt; 2 - .bin; 3 - .xml) ");
+                            int answ = scanner.nextInt();
+                            switch (answ)
                             {
-                                case 0:
+                                case 1:
                                 {
-                                    System.out.println("What save do you want? (1 - .txt; 2 - .bin; 3 - .xml) ");
-                                    int answ = scanner.nextInt();
-                                    switch (answ)
-                                    {
-                                        case 1:
-                                        {
-                                            helperL.serializationTXT();
-                                            break;
-                                        }
-                                        case 2:
-                                        {
-                                            helperL.serializationBIN();
-                                            break;
-                                        }
-                                        case 3:
-                                        {
-                                            helperL.serializationXML();
-                                            break;
-                                        }
-                                        default:
-                                        {
-                                            System.out.println("We dont save your array (");
-                                            break;
-                                        }
-                                    }
+                                    helperL.serializationTXT();
                                     break;
                                 }
-                                case 1 :
+                                case 2:
                                 {
-                                    helperL.deserializtionBIN();
+                                    helperL.serializationBIN();
                                     break;
                                 }
-                                case 2 :
+                                case 3:
                                 {
-                                    helperL.deserializtionXML();
+                                    helperL.serializationXML();
                                     break;
                                 }
-                                case 3 :
+                                default:
                                 {
-                                    helperL.deserializtionTXT();
+                                    System.out.println("We dont save your array (");
                                     break;
                                 }
                             }

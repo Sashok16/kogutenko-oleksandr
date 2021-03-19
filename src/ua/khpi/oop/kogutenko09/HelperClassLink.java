@@ -29,8 +29,7 @@ public class HelperClassLink<T> implements Iterable<T> {
             N = 0;
         }
 //////////////////////////////////////////////////////////
-        private class Node
-        {
+        private class Node {
             private T data;
             private Node next;
 
@@ -353,41 +352,67 @@ public class HelperClassLink<T> implements Iterable<T> {
      * Serialization txt.
      */
     public void serializationTXT(){
-        File file = ConsoleFile.MenuFillOut(".bin");///pathname
-        try {
-            FileOutputStream fos = new FileOutputStream(file);
-            ObjectOutputStream oos = new ObjectOutputStream(fos);
-
-            oos.writeObject(this.size());
+        File file = ConsoleFile.MenuFillOut(".txt");///pathname
+        Writer out;
+        try (PrintWriter pw = new PrintWriter(file.getName())) {
             System.out.println("size :" + this.size());
+            //String sb = new String();
             for (T el : this)
             {
-                oos.writeObject(el);
+                pw.write(el.toString());
+                System.out.print(el.toString());
             }
-        }
-        catch(FileNotFoundException e)
-        {
+
+        } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-        catch (IOException e) {
-            e.printStackTrace();
-        }
+//        try (FileWriter write = new FileWriter(file)){
+//            System.out.println("size :" + this.size());
+//            String sb = new String();
+//            for (T el : this)
+//            {
+//                sb += el.toString();
+//            }
+//            write.write(sb);
+//            write.flush();
+//            write.close();
+//
+//
+//        }
+//        catch(FileNotFoundException e)
+//        {
+//            e.printStackTrace();
+//        }
+//        catch (IOException e) {
+//            e.printStackTrace();
+//        }
     }
 
     /**
      * Deserializtion txt.
      */
-    public void deserializtionTXT(){
+    public void deserializationTXT(){
             File file = ConsoleFile.MenuFillIn(".txt");///pathname
             try {
-                FileInputStream fis = new FileInputStream(file);///pathname
-                ObjectInputStream ois = new ObjectInputStream(fis);
-                Integer count = ois.readInt();
-                for(int i = 0; i < count; i++)
-                {
-                    this.add((T) ois.readObject());
+                BufferReader br = new  BufferedReader br = new BufferedReader(new InputStreamReader(
+                        new FileInputStream(file));
+                String line, id = null,
+                        name = null,
+                        unit = null,
+                        count = null,
+                        date = null,
+                        description = null;
+                while ((line = br.readLine()) != null) {
+                    if (line.contains("id:")) {
+                        name = line.substring(4, line.length() - 1);
+                    }
+                    if (line.contains("race:")) {
+                        race = line.substring(6, line.length() - 1);
+                    }
+                    if (line.contains("age:")) {
+                        age = line.substring(5, line.length() - 1);
+                    }
                 }
-
             }
             catch(FileNotFoundException e) {e.printStackTrace();}
             catch (IOException e) {e.printStackTrace();	}
@@ -397,7 +422,7 @@ public class HelperClassLink<T> implements Iterable<T> {
     /**
      * Deserializtion bin.
      */
-    public void deserializtionBIN(){
+    public void deserializationBIN(){
             File file = ConsoleFile.MenuFillIn(".bin");///pathname
             try {
                 FileInputStream fis = new FileInputStream(file);///pathname
@@ -417,7 +442,7 @@ public class HelperClassLink<T> implements Iterable<T> {
     /**
      * Deserializtion xml.
      */
-    public void deserializtionXML(){
+    public void deserializationXML(){
             try{
                 XMLDecoder decoder = new XMLDecoder(
                         new BufferedInputStream(

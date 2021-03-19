@@ -68,6 +68,10 @@ public class Shops implements Serializable {
         //description = "";
     }
 
+    public Shops(String str) {
+
+    }
+
     /**
      * Instantiates a new Shops.
      *
@@ -180,9 +184,13 @@ public class Shops implements Serializable {
 
     public String toString()
     {
-        String info = "id: " + id + " | name: " + name + " | unit: "
-                    + unit + " | count: " + count + " | date: " + date.GetDate()
-                    + " | description: " + getDescriptionInfo() + "\n";
+        String info = "id: "          + id +
+                   " | name: "        + name +
+                   " | unit: "        + unit +
+                   " | count: "       + count +
+                   " | date: "        + date.GetDate() +
+                   " | discription: " + getDescriptionInfo() +
+                   "\n";
         return info;
     }
 
@@ -233,4 +241,6 @@ public class Shops implements Serializable {
             }
         }
     }
+
+
 }
