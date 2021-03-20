@@ -1,0 +1,3 @@
+id: 1 | name: appple | unit: kg | count: 12 | date: 01.01.2020 | discription: color1 - red,color2 - green,
+id: 2 | name: tomato | unit: kg | count: 40 | date: 02.02.2020 | discription: color1 - red,smell - testy,
+id: 3 | name: cherry | unit: kg | count: 376 | date: 04.04.2020 | discription: color1 - red_red,color2 - black_red,
