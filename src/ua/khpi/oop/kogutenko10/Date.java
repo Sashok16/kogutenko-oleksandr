@@ -19,6 +19,19 @@ public class Date implements Serializable {
         this.month=1;
     }
 
+    /**
+     * Instantiates a new Date.
+     *
+     * @param day  the day
+     * @param mon  the mon
+     * @param year the year
+     */
+    Date(int day, int mon, int year)
+    {
+        this.day = day;
+        this.year = year;
+        this.month = mon;
+    }
 
     /**
      * Gets day.
@@ -81,7 +94,7 @@ public class Date implements Serializable {
      */
     public String getDate()
     {
-        return day + "/" + month + "/" + year;
+        return day + "." + month + "." + year;
     }
 
     /**
@@ -125,12 +138,17 @@ public class Date implements Serializable {
             setMonth(mon);
         else
             setMonth(1);
-        if(year > 1970 && year < 2021)
+        if(year > 1970 && year < 2022)
             setYear(year);
         else
-            setYear(2020);
+            setYear(2021);
     }
 
+    /**
+     * Sets date.
+     *
+     * @param date the date
+     */
     public void setDate(String date)
     {
        String[] dateBuff = date.split("\\.");

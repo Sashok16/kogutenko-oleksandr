@@ -29,6 +29,11 @@ public class HelperClass extends Object{
      */
     public HelperClass() { }
 
+    /**
+     * Instantiates a new Helper class.
+     *
+     * @param save the save
+     */
     public HelperClass(Array<Shops> save) { this.save = save; }
 
     /**

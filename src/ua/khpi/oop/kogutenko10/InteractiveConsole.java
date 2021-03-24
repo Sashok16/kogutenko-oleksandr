@@ -9,12 +9,37 @@ import java.util.Scanner;
 public class InteractiveConsole
 {
     private String  nikname;
+    /**
+     * The Answer deserialization.
+     */
     int answerDeserialization = 0;
-    boolean check = true, checkChoicelist = false, list = true;
+    /**
+     * The Check.
+     */
+    boolean check = true, /**
+ * The Check choicelist.
+ */
+checkChoicelist = false, /**
+ * The List.
+ */
+list = false;
+    /**
+     * The Input.
+     */
     String input;
+    /**
+     * The Helper.
+     */
     HelperClass helper = new HelperClass();
+    /**
+     * The Helper l.
+     */
     HelperClassLink<Shops> helperL = new HelperClassLink<>();
+    /**
+     * The Scanner.
+     */
     Scanner scanner = new Scanner(System.in);
+
     /**
      * Gets nikname.
      *
@@ -49,15 +74,27 @@ public class InteractiveConsole
                 {
                     System.out.println("LinkedList\n");
                 }
+                if(list){
+                    System.out.println(
+                            "1 / input   \t-\t input from file\n" +
+                            "2 / show    \t-\t show information about shops\n" +
+                            "3 / add     \t-\t add one shop\n" +
+                            "4 / remove  \t-\t remove one shop\n" +
+                            "5 / switch  \t-\t switch to another list\n" +
+                            "0 / exit    \t-\t exit and save data\n"
+                    );
+                } else {
+                    System.out.println(
+                            "1 / input   \t-\t input from file\n" +
+                            "2 / show    \t-\t show information about shops\n" +
+                            "3 / add     \t-\t add one shop\n" +
+                            "4 / remove  \t-\t remove one shop\n" +
+                            "5 / switch  \t-\t switch to another list\n" +
+                            "9 / sort    \t-\t sort linked list by fields\n" +
+                            "0 / exit    \t-\t exit and save data\n"
+                    );
+                }
 
-                System.out.println(
-                        "1 / input   \t-\t input from file\n" +
-                        "2 / show    \t-\t show information about shops\n" +
-                        "3 / add     \t-\t add one shop\n" +
-                        "4 / remove  \t-\t remove one shop\n" +
-                        "5 / switch  \t-\t switch to another list\n" +
-                        "0 / exit    \t-\t exit and save data\n"
-                );
                 System.out.print(nikname + "@" + nikname + ": ");
                 //scanner.nextLine();
                 input = scanner.nextLine();
@@ -71,7 +108,7 @@ public class InteractiveConsole
                         }
                         else {
                             System.out.println("LinkedList\n");
-                            System.out.println("what deserialization do you want?\n(1 - bin, 2 - xml, 3 - txt)>>>");
+                            System.out.print("what deserialization do you want?\n(1 - bin, 2 - xml, 3 - txt)\n>>> ");
                             answerDeserialization = scanner.nextInt();
                             switch (answerDeserialization)
                             {
@@ -105,7 +142,7 @@ public class InteractiveConsole
                         }
                         else {
                             System.out.println("LinkedList\n");
-                            System.out.println("what deserialization do you want?\n(1 - bin, 2 - xml, 3 - txt)>>>");
+                            System.out.print("what deserialization do you want?\n(1 - bin, 2 - xml, 3 - txt)\n>>> ");
                             answerDeserialization = scanner.nextInt();
                             switch (answerDeserialization)
                             {
@@ -176,7 +213,7 @@ public class InteractiveConsole
                         {
                             helperL.printList();
                             Scanner sc = new Scanner(System.in);
-                            System.out.println("Enter number of id: ");
+                            System.out.print("Enter number of id: ");
                             int id = sc.nextInt();
                             if (id < 0 || id > helperL.size()) {
                                 throw new Exception("out of range!!!!!");
@@ -197,7 +234,7 @@ public class InteractiveConsole
                         {
                             helperL.printList();
                             Scanner sc = new Scanner(System.in);
-                            System.out.println("Enter number of id: ");
+                            System.out.print("Enter number of id: ");
                             int id = sc.nextInt();
                             if (id < 0 || id > helperL.size()) {
                                 throw new Exception("out of range!!!!!");
@@ -216,11 +253,11 @@ public class InteractiveConsole
                         boolean checkListAnsw = true;
                         while (checkListAnsw)
                         {
-                            System.out.println(
+                            int answer = 0;
+                            System.out.print(
                                     "array list  - 1\n" +
                                     "linked list - 2\n" +
-                                    "what list do you want to use? (1 or 2)\n");
-                            int answer = 0;
+                                    "what list do you want to use? (1 or 2)\n>>> ");
                             Scanner scanner1 = new Scanner(System.in);
                             answer = scanner1.nextInt();
                             if(answer == 1)
@@ -247,10 +284,10 @@ public class InteractiveConsole
                         boolean checkListAnsw = true;
                         while (checkListAnsw)
                         {
-                            System.out.println(
+                            System.out.print(
                                     "array list  - 1\n" +
                                     "linked list - 2\n" +
-                                    "what list do you want to use? (1 or 2)\n");
+                                    "what list do you want to use? (1 or 2)\n>>> ");
                             int answer = 0;
                             Scanner scanner1 = new Scanner(System.in);
                             answer = scanner1.nextInt();
@@ -309,8 +346,8 @@ public class InteractiveConsole
                             helper.serialization();
                         }
                         else {
-                            System.out.println("saved linkedlist");
-                            System.out.println("What save do you want? (1 - .txt; 2 - .bin; 3 - .xml) ");
+                            //System.out.println("saved linkedlist");
+                            System.out.print("What save do you want? (1 - .txt; 2 - .bin; 3 - .xml)\n>>> ");
                             int answ = scanner.nextInt();
                             switch (answ)
                             {
@@ -338,6 +375,14 @@ public class InteractiveConsole
                         }
                         check = false;
                         break;
+                    }
+                    case "9":{
+                        System.out.println("Entrance to 9(sorting)");
+                        helperL = sort(helperL);
+                        System.out.println("list after:\n");
+                        System.out.println("\n------------------------------------\n");
+                        helperL.printList();
+                        System.out.println("\n------------------------------------\n");
                     }
                     default: {
                         System.out.println("(" + input + ") I don't know this command :(");
@@ -384,6 +429,7 @@ public class InteractiveConsole
                     name = null,
                     unit = null,
                     count = null,
+                    price = null,
                     date = null,
                     description = null;
             while ((line = br.readLine()) != null) {
@@ -397,13 +443,16 @@ public class InteractiveConsole
                     unit = line.substring(line.indexOf("unit:") + 6, line.indexOf(" | count: "));
                 }
                 if(line.contains("count:")){
-                    count = line.substring(line.indexOf("count:") + 7, line.indexOf(" | date: "));
+                    count = line.substring(line.indexOf("count:") + 7, line.indexOf(" | price: "));
+                }
+                if(line. contains("price")){
+                    price = line.substring(line.indexOf("price:") + 7, line.indexOf(" | date: "));
                 }
                 if(line.contains("date:")){
-                    date = line.substring(line.indexOf("date:") + 6, line.indexOf(" | discription: "));
+                    date = line.substring(line.indexOf("date:") + 6, line.indexOf(" | description: "));
                 }
-                if(line.contains("discription:")){
-                    description = line.substring(line.indexOf("discription:") + 13, line.length() - 1);
+                if(line.contains("description:")){
+                    description = line.substring(line.indexOf("description:") + 13, line.length() - 1);
                 }
 
                 Shops shop = new Shops();
@@ -412,6 +461,7 @@ public class InteractiveConsole
                 shop.setName(name);
                 shop.setDate(date);
                 shop.setUnit(unit);
+                shop.setPrice(Integer.parseInt(price));
                 shop.setDescription(description);
                 helperL.add(shop);
             }
@@ -420,4 +470,64 @@ public class InteractiveConsole
         catch (IOException e) {e.printStackTrace();	}
         //catch (ClassNotFoundException e) {e.printStackTrace();}
     }
+
+    /**
+     * Sort helper class link.
+     *
+     * @param list the list
+     * @return the helper class link
+     */
+    public HelperClassLink<Shops> sort(HelperClassLink<Shops> list) {
+        System.out.println("Function sort\nlist before:\n");
+        System.out.println("\n------------------------------------\n");
+        list.printList();
+        System.out.println("\n------------------------------------\n");
+        Shops[] shops = new Shops[list.size()];
+        for (int i = 0; i < shops.length; i++) {
+            shops[i] = list.get(i);
+        }
+        System.out.print("Enter field sorted (1 - name; 2 - price; 3 - date\n>>>");
+        int field = scanner.nextInt();
+        bubbleSort(shops, field);
+        return new HelperClassLink<>(shops);
+    }
+
+    private void bubbleSort(Shops[] array, int field) {
+        System.out.println("Function bubbleSort");
+        boolean sorted = false;
+        Shops temp;
+        while(!sorted) {
+            sorted = true;
+            for (int i = 1; i < array.length; i++) {
+                if (compare(array[i], array[i - 1], field)) {
+                   swap(array, i , i-1);
+                   sorted = false;
+                }
+            }
+        }
+        System.out.println("Exit from bubbleSort");
+    }
+
+    private boolean compare(Shops a, Shops b, int field){
+        switch (field){
+            case 1:
+                return a.getName().compareTo(b.getName()) >= 0;
+            case 2:
+                return a.getPrice() < b.getPrice();
+            case 3:
+                return (a.getDate().getYear() > b.getDate().getYear())
+                        || (a.getDate().getYear() == b.getDate().getYear() && a.getDate().getMonth() > b.getDate().getMonth())
+                        || (a.getDate().getYear() == b.getDate().getYear() && a.getDate().getMonth() == b.getDate().getMonth()
+                        && a.getDate().getDay() > b.getDate().getDay());
+
+        }
+        return false;
+    }
+
+    private void swap(Shops[] array, int ind1, int ind2) {
+        Shops tmp = array[ind1];
+        array[ind1] = array[ind2];
+        array[ind2] = tmp;
+    }
 }
+

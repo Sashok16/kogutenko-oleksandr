@@ -42,7 +42,7 @@ public interface Array<E> extends Iterable<E>{
      * видаляє перший випадок вказаного елемента з контейнера;
      *
      * @param index the el
-     * @return boolean
+     * @return boolean boolean
      */
     boolean remove(int index);
 

@@ -26,16 +26,17 @@ public class ConsoleFile {
      */
     public static int dialogOut() throws IOException, InterruptedException
     {
-        System.out.print("\n\nsave collection to...\n"
-                + "choice command:"
-                + "\n 1 - location"
-                + "\n 2 - directory files"
-                + "\n 3 - out of directory"
-                + "\n 4 - take file to check"
-                + "\n 5 - create directory here"
-                + "\n 6 - go to another way : "
-                + "\n 7 - name of file which contain your collection's data"
-                + "\n\n>>>");
+        System.out.print("---------------------------------------------------------"
+                       + "\n\nsave collection to...\n"
+                       + "choice command:"
+                       + "\n 1 - location"
+                       + "\n 2 - directory files"
+                       + "\n 3 - out of directory"
+                       + "\n 4 - take file to check"
+                       + "\n 5 - create directory here"
+                       + "\n 6 - go to another way : "
+                       + "\n 7 - name of file which contain your collection's data"
+                       + "\n\n>>> ");
         return in.nextInt();
     }
 
@@ -111,7 +112,6 @@ public class ConsoleFile {
                     case 6:
                         System.out.print("enter way: ");
                         String s3 = in.nextLine();
-                        s3 = in.nextLine();
                         String s2 = new String();
                         for (int i = 0; i < s3.length(); i++)
                         {
@@ -124,7 +124,7 @@ public class ConsoleFile {
                         break;
 
                     case 7:
-                        System.out.print("enter name of file without extension (.txt, .bin etc.):");
+                        System.out.print("enter name of file without extension (.txt, .bin etc.): ");
                         in.nextLine();
                         return new File(file.getAbsolutePath() + "/" + in.nextLine() + fileExtension);
                 }
@@ -149,15 +149,16 @@ public class ConsoleFile {
      */
     public static int dialogIn() throws IOException, InterruptedException
     {
-        System.out.print("\n\ncreate collection from..."
-                + "choice command:"
-                + "\n 1 - location"
-                + "\n 2 - directory files"
-                + "\n 3 - go to another directory"
-                + "\n 4 - out of directory"
-                + "\n 5 - choice file to create collection"
-                + "\n 6 - go to... :"
-                + "\n\n>>>");
+        System.out.print("---------------------------------------------------------"
+                       + "\n\ncreate collection from..."
+                       + "choice command:"
+                       + "\n 1 - location"
+                       + "\n 2 - directory files"
+                       + "\n 3 - go to another directory"
+                       + "\n 4 - out of directory"
+                       + "\n 5 - choice file to create collection"
+                       + "\n 6 - go to... :"
+                       + "\n\n>>> ");
         return in.nextInt();
     }
 
@@ -188,11 +189,11 @@ public class ConsoleFile {
                             if ( a % 4 == 0)
                                 System.out.print("\n");
                             a++;
-                            System.out.printf("%-30s  ",file2.getName());
+                            System.out.printf("%-30s  ", file2.getName());
                         } ///////////
                         break;
                     case 3:
-                        System.out.print("enter name o file:");
+                        System.out.print("enter name o file: ");
                         file = new File(file.getAbsolutePath() + "/" + in.nextLine());
                         if (file.isDirectory() == false)
                         {
@@ -204,7 +205,7 @@ public class ConsoleFile {
                         file = file.getParentFile();
                         break;
                     case 5:
-                        System.out.print("enter name of file without extension:  ");
+                        System.out.print("enter name of file without extension: ");
                         in.nextLine();
                         file = new File(file.getAbsolutePath() + "/" + in.nextLine() + fileExtension);
                         if (file.isFile() == true) {
