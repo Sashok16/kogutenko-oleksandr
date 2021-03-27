@@ -1,10 +1,14 @@
-package ua.khpi.oop.kogutenko09;
+package ua.khpi.oop.kogutenko11;
+
+import ua.khpi.oop.kogutenko07.Shop;
 
 import java.beans.XMLDecoder;
 import java.beans.XMLEncoder;
 import java.io.*;
 import java.util.Iterator;
+import java.util.Map;
 import java.util.NoSuchElementException;
+import java.util.Scanner;
 
 /**
  * The type Helper class link.
@@ -23,37 +27,46 @@ public class HelperClassLink<T> implements Iterable<T> {
             firstElem = null;
             lastElem = null;
             N = 0;
-        }
+    }
+
+    /**
+     * Instantiates a new Helper class link.
+     *
+     * @param arr the arr
+     */
+    public HelperClassLink(T[] arr){
+        for (int i = 0; i < arr.length; i++) this.add(arr[i]);
+    }
 //////////////////////////////////////////////////////////
         private class Node {
             private T data;
             private Node next;
 
-            /**
-             * Instantiates a new Node.
-             *
-             * @param data the data
-             * @param next the next
-             */
-            public Node(T data, Node next)
+    /**
+     * Instantiates a new Node.
+     *
+     * @param data the data
+     * @param next the next
+     */
+    public Node(T data, Node next)
             {
                 this.data = data;
                 this.next = next;
             }
 
-            /**
-             * Instantiates a new Node.
-             */
-            public Node()
+    /**
+     * Instantiates a new Node.
+     */
+    public Node()
             {
             }
 
-            /**
-             * Data of elem t.
-             *
-             * @return the t
-             */
-            public T dataOfElem()
+    /**
+     * Data of elem t.
+     *
+     * @return the t
+     */
+    public T dataOfElem()
             {
                 return data;
             }
@@ -82,6 +95,7 @@ public class HelperClassLink<T> implements Iterable<T> {
                 throw new UnsupportedOperationException();
             }
         }
+///////////////////////////////////////////////////////////
 
     /**
      * Get t.
@@ -89,8 +103,7 @@ public class HelperClassLink<T> implements Iterable<T> {
      * @param index the index
      * @return the t
      */
-///////////////////////////////////////////////////////////
-        public T get(int index) {
+    public T get(int index) {
             if (index < 0 || index >= N) {
                 throw new IndexOutOfBoundsException();
             }
@@ -134,15 +147,18 @@ public class HelperClassLink<T> implements Iterable<T> {
      * @return the boolean
      */
     public boolean remove(int index) {
+
             if (index < 0 || index > N - 1) {
                 throw new IllegalArgumentException();
             }
             if (index == 0) {
                 firstElem = firstElem.next;
+                System.out.println("removing is \n" + firstElem.data.toString());
             } else {
                 Node node = findNodeBeforeByIndex(index);
                 Node tmp = findByIndex(index);
                 node.next = tmp.next;
+                System.out.println("removing is \n" + tmp.data.toString());
             }
             N--;
             return false;
@@ -190,6 +206,7 @@ public class HelperClassLink<T> implements Iterable<T> {
      * @return the int
      */
     public int size(){
+
              return N;
         }
 
@@ -199,15 +216,18 @@ public class HelperClassLink<T> implements Iterable<T> {
      * @return the boolean
      */
     public boolean isEmpty() {
+
             return N == 0;
         }
 
     public Iterator<T> iterator(){
+
             return new LinkedListIterator();
         }
 
     @Override
     public String toString() {
+
             StringBuilder s = new StringBuilder();
             for (T item : this)
                 s.append(item + " ");
@@ -218,6 +238,7 @@ public class HelperClassLink<T> implements Iterable<T> {
      * Print list.
      */
     public void printList(){
+
             String str = "";
             for(T item : this)
             {
@@ -227,6 +248,7 @@ public class HelperClassLink<T> implements Iterable<T> {
         }
 
     private Node findByIndex(int index) {
+
             if (index < 0 || index > N - 1) {
                 throw new IndexOutOfBoundsException();
             }
@@ -250,6 +272,7 @@ public class HelperClassLink<T> implements Iterable<T> {
             throw new IndexOutOfBoundsException();
         }
     private Node findNodeBefore(T value) {
+
             if (firstElem.data == value) {
                 Node res = new Node(firstElem.data, firstElem.next);
                 return res;
@@ -266,6 +289,7 @@ public class HelperClassLink<T> implements Iterable<T> {
         }
 
     private Node findNodeBeforeByIndex(int index) {
+
             if (index <= 0 || index > N - 1) {
                 return null;
             }
@@ -286,7 +310,7 @@ public class HelperClassLink<T> implements Iterable<T> {
      * Serialization xml.
      */
     public void serializationXML(){
-                //File file = ConsoleFile.MenuFillOut();
+
             try{
                 XMLEncoder encoder = new XMLEncoder(
                      new BufferedOutputStream(
@@ -379,13 +403,48 @@ public class HelperClassLink<T> implements Iterable<T> {
         }
 
 
-
+    /**
+     * To own array array.
+     *
+     * @return the array
+     */
     public Array<T> toOwnArray() {
         Array<T> save = new SaveArray<>();
         for(int i = 0; i > N; i++) {
             save.add(this.get(i));
         }
         return save;
+    }
+
+    /**
+     * To array t [ ].
+     *
+     * @return the t [ ]
+     */
+    public T[] toArray() {
+        T[] arr = (T[]) new Object[N];
+        for(int i = 0; i < N; i++) arr[i] = get(i);
+        return arr;
+    }
+
+    /**
+     * From array.
+     *
+     * @param array the array
+     */
+    public void fromArray(T[] array){
+        for(int i = 0; i < array.length; i++){
+            add(array[i]);
+        }
+    }
+
+    /**
+     * Sort.
+     *
+     * @param method the method
+     */
+    public void sort(int method) {
+
     }
 }
 

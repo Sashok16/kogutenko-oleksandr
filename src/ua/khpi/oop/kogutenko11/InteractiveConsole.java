@@ -1,4 +1,4 @@
-package ua.khpi.oop.kogutenko10;
+package ua.khpi.oop.kogutenko11;
 
 import java.io.*;
 import java.util.Scanner;

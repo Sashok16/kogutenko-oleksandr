@@ -1,4 +1,4 @@
-package ua.khpi.oop.kogutenko09;
+package ua.khpi.oop.kogutenko11;
 
 import java.io.Serializable;
 import java.util.HashMap;
@@ -14,8 +14,27 @@ public class Shops implements Serializable {
     private String name;
     private String unit;
     private int count;
+    private int price;
     private Date date = new Date();
     private Map<String,String> description = new HashMap<String, String>();
+
+    /**
+     * Gets price.
+     *
+     * @return the price
+     */
+    public int getPrice() {
+        return price;
+    }
+
+    /**
+     * Sets price.
+     *
+     * @param price the price
+     */
+    public void setPrice(int price) {
+        this.price = price;
+    }
 
     /**
      * Sets description.
@@ -57,6 +76,11 @@ public class Shops implements Serializable {
         this.description.put(key,val);
     }
 
+    /**
+     * Sets description.
+     *
+     * @param description the description
+     */
     public void setDescription(String description) {
         String key = null, val = null, strOn = null;
         String[] str = description.split(",");
@@ -69,6 +93,7 @@ public class Shops implements Serializable {
             this.description.put(key,val);
         }
     }
+
     /**
      * Instantiates a new Shops.
      */
@@ -77,9 +102,15 @@ public class Shops implements Serializable {
         name = "";
         unit = "";
         count = 0;
+        price = 0;
         //description = "";
     }
 
+    /**
+     * Instantiates a new Shops.
+     *
+     * @param str the str
+     */
     public Shops(String str) {
 
     }
@@ -87,18 +118,20 @@ public class Shops implements Serializable {
     /**
      * Instantiates a new Shops.
      *
-     * @param id    the id
-     * @param name  the name
-     * @param unit  the unit
-     * @param count the count
-     * @param date  the date
+     * @param id          the id
+     * @param name        the name
+     * @param unit        the unit
+     * @param count       the count
+     * @param price       the price
+     * @param date        the date
      * @param description the description
      */
-    public Shops(int id, String name, String unit, int count, Date date, Map<String, String> description) {
+    public Shops(int id, String name, String unit, int count, int price, Date date, Map<String, String> description) {
         this.id = id;
         this.name = name;
         this.unit = unit;
         this.count = count;
+        this.price = price;
         this.date.setDate(date.getDay(),date.getMonth(),date.getYear());
         setDescription(description);
     }
@@ -193,6 +226,11 @@ public class Shops implements Serializable {
         this.date = date;
     }
 
+    /**
+     * Sets date.
+     *
+     * @param date the date
+     */
     public void setDate(String date) {
         this.date.setDate(date);
     }
@@ -202,8 +240,9 @@ public class Shops implements Serializable {
                    " | name: "        + name +
                    " | unit: "        + unit +
                    " | count: "       + count +
+                   " | price: "       + price +
                    " | date: "        + date.GetDate() +
-                   " | discription: " + getDescriptionInfo() +
+                   " | description: " + getDescriptionInfo() +
                    "\n";
         return info;
     }
@@ -213,7 +252,7 @@ public class Shops implements Serializable {
      */
     public void add(){
         Scanner sc = new Scanner(System.in);
-        System.out.print("Enter info:\n");
+        System.out.println("Enter info:\n");
 
         System.out.print("Enter id: ");
         setId(sc.nextInt());
@@ -228,11 +267,14 @@ public class Shops implements Serializable {
         System.out.print("Enter count: ");
         setCount(sc.nextInt());
 
-        System.out.print("Enter date: \nday - ");
+        System.out.print("Enter price: ");
+        setPrice(sc.nextInt());
+
+        System.out.print("Enter date:\n\tday - ");
         int day = sc.nextInt();
-        System.out.print("\nmon - ");
+        System.out.print("\tmon - ");
         int mon = sc.nextInt();
-        System.out.print("\nyear - ");
+        System.out.print("\tyear - ");
         int year = sc.nextInt();
         date.setDate(day, mon, year);
 
@@ -240,13 +282,13 @@ public class Shops implements Serializable {
         boolean check = true;
         while (check)
         {
-            System.out.print("\nEnter key: ");
+            System.out.print("Enter key: ");
             sc.nextLine();
             String key = sc.nextLine();
-            System.out.print("\nEnter val: ");
+            System.out.print("Enter val: ");
             String val = sc.nextLine();
             this.description.put(key,val);
-            System.out.print("Do you want to add mor one description? (0 - no, 1 - yes)\n> ");
+            System.out.print("Do you want to add mor one description? (0 - no, 1 - yes)\n>>> ");
             int answer = sc.nextInt();
             if (answer == 0)
             {
