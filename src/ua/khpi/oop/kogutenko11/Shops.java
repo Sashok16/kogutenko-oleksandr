@@ -251,6 +251,8 @@ public class Shops implements Serializable {
      * Add.
      */
     public void add(){
+        //regex!!!!!!
+
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter info:\n");
 

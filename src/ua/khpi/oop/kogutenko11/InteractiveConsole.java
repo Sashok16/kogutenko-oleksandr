@@ -8,7 +8,7 @@ import java.util.Scanner;
  */
 public class InteractiveConsole
 {
-    private String  nikname;
+    private String nickname;
     /**
      * The Answer deserialization.
      */
@@ -16,13 +16,15 @@ public class InteractiveConsole
     /**
      * The Check.
      */
-    boolean check = true, /**
- * The Check choicelist.
- */
-checkChoicelist = false, /**
- * The List.
- */
-list = false;
+    boolean check = true,
+    /**
+     * The Check choicelist.
+     */
+    checkChoicelist = false,
+    /**
+    * The List.
+    */
+    list = false;
     /**
      * The Input.
      */
@@ -45,26 +47,29 @@ list = false;
      *
      * @return the nikname
      */
-    public String getNikname() {
-        return nikname;
+    public String getNickname() {
+        return nickname;
     }
 
     /**
      * Sets nikname.
      *
-     * @param nikname the nikname
+     * @param nickname the nikname
      */
-    public void setNikname(String nikname) {
-        this.nikname = nikname;
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
     }
 
     /**
      * Start console.
      */
     public void startConsole() {
-               try {
-            System.out.print("Input your nikname: ");
-            setNikname(scanner.nextLine());
+        try {
+            System.out.print("Input your nickname: ");
+            //regex
+            String nick = scanner.nextLine();
+            //
+            setNickname(nick);
             while (check) {
                 if(list)
                 {
@@ -95,11 +100,13 @@ list = false;
                     );
                 }
 
-                System.out.print(nikname + "@" + nikname + ": ");
-                //scanner.nextLine();
+                System.out.print(nickname + "@" + nickname + ": ");
+                //regex
                 input = scanner.nextLine();
+                //
                 switch (input) {
-                    case " ": {
+                    case "\n": {
+                        System.out.print(nickname + "@" + nickname + ": ");
                         break;
                     }
                     case "input": {
@@ -214,7 +221,9 @@ list = false;
                             helperL.printList();
                             Scanner sc = new Scanner(System.in);
                             System.out.print("Enter number of id: ");
+                            //regex
                             int id = sc.nextInt();
+                            //
                             if (id < 0 || id > helperL.size()) {
                                 throw new Exception("out of range!!!!!");
                             } else if(!helperL.removeElement(helperL.get(id)))
@@ -235,7 +244,9 @@ list = false;
                             helperL.printList();
                             Scanner sc = new Scanner(System.in);
                             System.out.print("Enter number of id: ");
+                            //regex
                             int id = sc.nextInt();
+                            //
                             if (id < 0 || id > helperL.size()) {
                                 throw new Exception("out of range!!!!!");
                             } else if(!helperL.remove(id))
@@ -259,7 +270,9 @@ list = false;
                                     "linked list - 2\n" +
                                     "what list do you want to use? (1 or 2)\n>>> ");
                             Scanner scanner1 = new Scanner(System.in);
+                            //regex
                             answer = scanner1.nextInt();
+                            //
                             if(answer == 1)
                             {
                                 list = true;
@@ -290,7 +303,9 @@ list = false;
                                     "what list do you want to use? (1 or 2)\n>>> ");
                             int answer = 0;
                             Scanner scanner1 = new Scanner(System.in);
+                            //regex
                             answer = scanner1.nextInt();
+                            //
                             if(answer == 1)
                             {
                                 list = true;
@@ -315,25 +330,30 @@ list = false;
                             helper.serialization();
                         }
                         else {
-                            switch (answerDeserialization)
+                            System.out.print("What save do you want? (1 - .txt; 2 - .bin; 3 - .xml)\n>>> ");
+                            //regex
+                            int answ = scanner.nextInt();
+                            //
+                            switch (answ)
                             {
-                                case 0:
+                                case 1:
                                 {
-                                   break;
+                                    serializationTXT();
+                                    break;
                                 }
-                                case 1 :
+                                case 2:
                                 {
                                     helperL.serializationBIN();
                                     break;
                                 }
-                                case 2 :
+                                case 3:
                                 {
                                     helperL.serializationXML();
                                     break;
                                 }
-                                case 3 :
+                                default:
                                 {
-                                    serializationTXT();
+                                    System.out.println("We dont save your array (");
                                     break;
                                 }
                             }
@@ -346,9 +366,10 @@ list = false;
                             helper.serialization();
                         }
                         else {
-                            //System.out.println("saved linkedlist");
                             System.out.print("What save do you want? (1 - .txt; 2 - .bin; 3 - .xml)\n>>> ");
+                            //regex
                             int answ = scanner.nextInt();
+                            //
                             switch (answ)
                             {
                                 case 1:
@@ -402,10 +423,8 @@ list = false;
      */
     public void serializationTXT(){
         File file = ConsoleFile.MenuFillOut(".txt");///pathname
-        Writer out;
         try (PrintWriter pw = new PrintWriter(file.getName())) {
             System.out.println("size :" + helperL.size());
-            //String sb = new String();
             for (Shops el : helperL)
             {
                 pw.write(el.toString());
@@ -434,24 +453,31 @@ list = false;
                     description = null;
             while ((line = br.readLine()) != null) {
                 if (line.contains("id:")) {
+                    //regex
                     id = line.substring(4, line.indexOf(" | name:"));
                 }
                 if (line.contains("name:")) {
+                    //regex
                     name = line.substring(line.indexOf("name: ") + 6, line.indexOf(" | unit:"));
                 }
                 if (line.contains("unit:")) {
+                    //regex
                     unit = line.substring(line.indexOf("unit:") + 6, line.indexOf(" | count: "));
                 }
                 if(line.contains("count:")){
+                    //regex
                     count = line.substring(line.indexOf("count:") + 7, line.indexOf(" | price: "));
                 }
                 if(line. contains("price")){
+                    //regex
                     price = line.substring(line.indexOf("price:") + 7, line.indexOf(" | date: "));
                 }
                 if(line.contains("date:")){
+                    //regex
                     date = line.substring(line.indexOf("date:") + 6, line.indexOf(" | description: "));
                 }
                 if(line.contains("description:")){
+                    //regex
                     description = line.substring(line.indexOf("description:") + 13, line.length() - 1);
                 }
 
@@ -468,7 +494,6 @@ list = false;
         }
         catch(FileNotFoundException e) {e.printStackTrace();}
         catch (IOException e) {e.printStackTrace();	}
-        //catch (ClassNotFoundException e) {e.printStackTrace();}
     }
 
     /**
@@ -478,7 +503,7 @@ list = false;
      * @return the helper class link
      */
     public HelperClassLink<Shops> sort(HelperClassLink<Shops> list) {
-        System.out.println("Function sort\nlist before:\n");
+        System.out.println("list before:\n");
         System.out.println("\n------------------------------------\n");
         list.printList();
         System.out.println("\n------------------------------------\n");
@@ -487,14 +512,15 @@ list = false;
             shops[i] = list.get(i);
         }
         System.out.print("Enter field sorted (1 - name; 2 - price; 3 - date\n>>>");
+        //regex
         int field = scanner.nextInt();
+        //
         bubbleSort(shops, field);
         return new HelperClassLink<>(shops);
     }
 
     private void bubbleSort(Shops[] array, int field) {
         boolean sorted = false;
-        Shops temp;
         while(!sorted) {
             sorted = true;
             for (int i = 1; i < array.length; i++) {

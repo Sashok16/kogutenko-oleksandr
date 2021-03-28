@@ -1,10 +1,6 @@
 package ua.khpi.oop.kogutenko11;
-import java.io.Console;
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.Scanner;
 
 /**
@@ -21,10 +17,8 @@ public class ConsoleFile {
      * Dialog out int.
      *
      * @return the int
-     * @throws IOException          the io exception
-     * @throws InterruptedException the interrupted exception
      */
-    public static int dialogOut() throws IOException, InterruptedException
+    public static int dialogOut()
     {
         System.out.print("---------------------------------------------------------"
                        + "\n\nsave collection to...\n"
@@ -37,7 +31,10 @@ public class ConsoleFile {
                        + "\n 6 - go to another way : "
                        + "\n 7 - name of file which contain your collection's data"
                        + "\n\n>>> ");
-        return in.nextInt();
+        //regex
+        String out = in.nextLine();
+        //
+        return Integer.parseInt(out);
     }
 
     /**
@@ -69,7 +66,7 @@ public class ConsoleFile {
                                 System.out.print("\n");
                             a++;
                             System.out.printf("%-25s  ", file2.getName());
-                        } ;///////////
+                        }
 
                         /*
                         files:
@@ -84,7 +81,10 @@ public class ConsoleFile {
                         break;
                     case 4:
                         System.out.print("enter name of file: ");
-                        file = new File(file.getAbsolutePath() + "/" + in.nextLine());
+                        //regex
+                        String fileName_4 = in.nextLine();
+                        //
+                        file = new File(file.getAbsolutePath() + "/" + fileName_4);
                         if (file.isFile() == true)
                             return file;
                         if(file.isDirectory() == true);
@@ -101,8 +101,10 @@ public class ConsoleFile {
                         break;
                     case 5:
                         System.out.print("enter name of directory: ");
-                        String s = in.nextLine();
-                        File dir = new File(file.getPath()+"/" + in.nextLine());
+                        //regex
+                        String direct = in.nextLine();
+                        //
+                        File dir = new File(file.getPath()+"/" + direct);
                         System.out.println("create directory: " + dir.mkdirs());
                         /*
                         enter name of directory:  /somedirect
@@ -111,7 +113,9 @@ public class ConsoleFile {
                         break;
                     case 6:
                         System.out.print("enter way: ");
+                        //regex
                         String s3 = in.nextLine();
+                        //
                         String s2 = new String();
                         for (int i = 0; i < s3.length(); i++)
                         {
@@ -126,17 +130,21 @@ public class ConsoleFile {
                     case 7:
                         System.out.print("enter name of file without extension (.txt, .bin etc.): ");
                         in.nextLine();
-                        return new File(file.getAbsolutePath() + "/" + in.nextLine() + fileExtension);
+
+                        //regex
+                        String fileName_7 = in.nextLine();
+                        //
+                        return new File(file.getAbsolutePath() + "/" + fileName_7 + fileExtension);
                 }
             }
             catch(Exception e)
             {
-                System.out.println(" EROR EROR EROR EROR EROR EROR EROR EROR \n");
-                //System.out.print("\n\n\nТрапилась помилка. Але тепер все добре!!\n\n");
+                System.out.println("EROR EROR EROR EROR EROR EROR EROR ERROR\n");
                 System.out.println(e);
+                break;
             }
         }
-
+        return null;
     }
 
 
@@ -144,10 +152,8 @@ public class ConsoleFile {
      * Dialog in int.
      *
      * @return the int
-     * @throws IOException          the io exception
-     * @throws InterruptedException the interrupted exception
      */
-    public static int dialogIn() throws IOException, InterruptedException
+    public static int dialogIn()
     {
         System.out.print("---------------------------------------------------------"
                        + "\n\ncreate collection from..."
@@ -159,7 +165,10 @@ public class ConsoleFile {
                        + "\n 5 - choice file to create collection"
                        + "\n 6 - go to... :"
                        + "\n\n>>> ");
-        return in.nextInt();
+        //regex
+        String in_s = in.nextLine();
+        //
+        return Integer.parseInt(in_s);
     }
 
     /**
@@ -194,7 +203,10 @@ public class ConsoleFile {
                         break;
                     case 3:
                         System.out.print("enter name o file: ");
-                        file = new File(file.getAbsolutePath() + "/" + in.nextLine());
+                        //regex
+                        String fileNameIn_3 = in.nextLine();
+                        //
+                        file = new File(file.getAbsolutePath() + "/" + fileNameIn_3);
                         if (file.isDirectory() == false)
                         {
                             System.out.print("NOT FOUND");
@@ -207,7 +219,10 @@ public class ConsoleFile {
                     case 5:
                         System.out.print("enter name of file without extension: ");
                         in.nextLine();
-                        file = new File(file.getAbsolutePath() + "/" + in.nextLine() + fileExtension);
+                        //regex
+                        String fileNameIn_5 = in.nextLine();
+                        //
+                        file = new File(file.getAbsolutePath() + "/" + fileNameIn_5 + fileExtension);
                         if (file.isFile() == true) {
                             System.out.println("file found");
                             return file;
@@ -216,7 +231,9 @@ public class ConsoleFile {
                     case 6:
                     {
                         System.out.print("enter way: ");
+                        //regex
                         String s3 = in.nextLine();
+                        //
                         String s2 = new String();
                         for (int i=0; i < s3.length(); i++)
                         {
@@ -234,8 +251,10 @@ public class ConsoleFile {
             {
                 System.out.println(" EROR EROR EROR EROR EROR EROR EROR EROR EROR \n");
                 System.out.println(e);
+                break;
             }
         }
+        return null;
     }
 }
 

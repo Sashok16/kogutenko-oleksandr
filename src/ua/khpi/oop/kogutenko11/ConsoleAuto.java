@@ -86,24 +86,31 @@ public class ConsoleAuto {
                     description = null;
             while ((line = br.readLine()) != null) {
                 if (line.contains("id:")) {
+                    //regex
                     id = line.substring(4, line.indexOf(" | name:"));
                 }
                 if (line.contains("name:")) {
+                    //regex
                     name = line.substring(line.indexOf("name: ") + 6, line.indexOf(" | unit:"));
                 }
                 if (line.contains("unit:")) {
+                    //regex
                     unit = line.substring(line.indexOf("unit:") + 6, line.indexOf(" | count: "));
                 }
                 if(line.contains("count:")){
+                    //regex
                     count = line.substring(line.indexOf("count:") + 7, line.indexOf(" | price: "));
                 }
                 if(line. contains("price")){
+                    //regex
                     price = line.substring(line.indexOf("price:") + 7, line.indexOf(" | date: "));
                 }
                 if(line.contains("date:")){
+                    //regex
                     date = line.substring(line.indexOf("date:") + 6, line.indexOf(" | description: "));
                 }
                 if(line.contains("description:")){
+                    //regex
                     description = line.substring(line.indexOf("description:") + 13, line.length() - 1);
                 }
 

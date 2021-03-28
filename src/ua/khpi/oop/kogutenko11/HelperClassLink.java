@@ -320,7 +320,6 @@ public class HelperClassLink<T> implements Iterable<T> {
 
                 for(T shop : this) {
                     encoder.writeObject(shop);
-                    //encoder.writeObject(shop.getDescription());
                 }
 
                 encoder.close();
@@ -392,8 +391,6 @@ public class HelperClassLink<T> implements Iterable<T> {
                 for(int i = 0; i < count; i++)
                 {
                     T shops = (T)decoder.readObject();
-                    Object obj = decoder.readObject();
-                    //shops.setDescription((Map<String, String>) obj);
                     this.add(shops);
                 }
                 decoder.close();
@@ -436,15 +433,6 @@ public class HelperClassLink<T> implements Iterable<T> {
         for(int i = 0; i < array.length; i++){
             add(array[i]);
         }
-    }
-
-    /**
-     * Sort.
-     *
-     * @param method the method
-     */
-    public void sort(int method) {
-
     }
 }
 
