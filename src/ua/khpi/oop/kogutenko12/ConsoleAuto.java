@@ -2,6 +2,8 @@ package ua.khpi.oop.kogutenko12;
 
 import java.io.*;
 import java.nio.file.Path;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.Random;
 import java.util.Scanner;
@@ -50,6 +52,8 @@ public class ConsoleAuto {
             System.out.println("Container after removing\n----------------------------------------------------------------------------------------------------------------------");
             hlAuto.printList();
             System.out.println("----------------------------------------------------------------------------------------------------------------------");
+            System.out.println("Fresh product:\n" + findFresh() + "----------------------------------------------------------------------------------------------------------------------");
+
             serializationTXT();
         }
         finally {
@@ -64,7 +68,6 @@ public class ConsoleAuto {
             for (Shops el : hlAuto)
             {
                 pw.write(el.toString());
-                System.out.print(el.toString());
             }
 
         } catch (FileNotFoundException e) {
@@ -219,5 +222,32 @@ public class ConsoleAuto {
         Shops tmp = array[ind1];
         array[ind1] = array[ind2];
         array[ind2] = tmp;
+    }
+
+    public String findFresh(){
+        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+        java.util.Date date = new java.util.Date();
+        System.out.println(dateFormat.format(date));
+        String dateStr = dateFormat.format(date);
+        String[] dateArr = dateStr.split("/");
+        int currYear = Integer.parseInt(dateArr[0]), currMon = Integer.parseInt(dateArr[1]), currDay = Integer.parseInt(dateArr[2]);
+        String str = "";
+        for(Shops shop : hlAuto) {
+            int prodY = shop.getDate().getYear();
+            int prodM = shop.getDate().getMonth();
+            int prodD = shop.getDate().getDay();
+            if(prodY == currYear){ // if year prod == curr year
+                if(prodM == currMon){
+                    if(prodD >= currDay){
+                        str += shop.toString();
+                    }
+                } else if (currMon - prodM == 1 && prodD >= currDay){
+                    str += shop.toString();
+                }
+            } else if(prodY == currYear - 1 && prodM == 12 && prodD >= currDay){
+                str += shop.toString();
+            }
+        }
+        return str;
     }
 }

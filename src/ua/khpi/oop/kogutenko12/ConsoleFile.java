@@ -128,7 +128,6 @@ public class ConsoleFile {
 
                     case 7:
                         System.out.print("enter name of file without extension (.txt, .bin etc.): ");
-                        in.nextLine();
 
                         //regex
                         String fileName_7 = in.nextLine();
@@ -217,7 +216,7 @@ public class ConsoleFile {
                         break;
                     case 5:
                         System.out.print("enter name of file without extension: ");
-                        in.nextLine();
+                        //in.nextLine();
                         //regex
                         String fileNameIn_5 = in.nextLine();
                         //
