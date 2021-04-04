@@ -19,17 +19,17 @@ import java.util.Scanner;
  * @param <T> the type parameter
  */
 public class HelperClassLink<T> implements Iterable<T> {
-        private Node firstElem;
-        private Node lastElem;
-        private int N;
+    private Node firstElem;
+    private Node lastElem;
+    private int N;
 
     /**
      * Instantiates a new Helper class link.
      */
     public HelperClassLink() {
-            firstElem = null;
-            lastElem = null;
-            N = 0;
+        firstElem = null;
+        lastElem = null;
+        N = 0;
     }
 
     /**
@@ -37,67 +37,63 @@ public class HelperClassLink<T> implements Iterable<T> {
      *
      * @param arr the arr
      */
-    public HelperClassLink(T[] arr){
+    public HelperClassLink(T[] arr) {
         for (int i = 0; i < arr.length; i++) this.add(arr[i]);
     }
-//////////////////////////////////////////////////////////
-        private class Node {
-            private T data;
-            private Node next;
 
-    /**
-     * Instantiates a new Node.
-     *
-     * @param data the data
-     * @param next the next
-     */
-    public Node(T data, Node next)
-            {
-                this.data = data;
-                this.next = next;
-            }
+    //////////////////////////////////////////////////////////
+    private class Node {
+        private T data;
+        private Node next;
 
-    /**
-     * Instantiates a new Node.
-     */
-    public Node()
-            {
-            }
-
-    /**
-     * Data of elem t.
-     *
-     * @return the t
-     */
-    public T dataOfElem()
-            {
-                return data;
-            }
+        /**
+         * Instantiates a new Node.
+         *
+         * @param data the data
+         * @param next the next
+         */
+        public Node(T data, Node next) {
+            this.data = data;
+            this.next = next;
         }
-///////////////////////////////////////////////////////////
-        private class LinkedListIterator implements Iterator<T> {
-            private Node current = firstElem;
 
-            public T next() {
-                if (!hasNext())
-                {
-                    throw new NoSuchElementException();
-                }
-                T item = current.data;
-                current = current.next;
-                return item;
-            }
-
-            public boolean hasNext()
-            {
-                return current != null;
-            }
-
-            public void remove()
-            {
-                throw new UnsupportedOperationException();
-            }
+        /**
+         * Instantiates a new Node.
+         */
+        public Node() {
         }
+
+        /**
+         * Data of elem t.
+         *
+         * @return the t
+         */
+        public T dataOfElem() {
+            return data;
+        }
+    }
+
+    ///////////////////////////////////////////////////////////
+    private class LinkedListIterator implements Iterator<T> {
+        private Node current = firstElem;
+
+        public T next() {
+            if (!hasNext()) {
+                throw new NoSuchElementException();
+            }
+            T item = current.data;
+            current = current.next;
+            return item;
+        }
+
+        public boolean hasNext() {
+            return current != null;
+        }
+
+        public void remove() {
+            throw new UnsupportedOperationException();
+        }
+    }
 ///////////////////////////////////////////////////////////
 
     /**
@@ -107,16 +103,16 @@ public class HelperClassLink<T> implements Iterable<T> {
      * @return the t
      */
     public T get(int index) {
-            if (index < 0 || index >= N) {
-                throw new IndexOutOfBoundsException();
-            }
-            Node result = firstElem;
-            for (int i = 0; i < index; i++) {
-                result = result.next;
-            }
-
-            return result.data;
+        if (index < 0 || index >= N) {
+            throw new IndexOutOfBoundsException();
         }
+        Node result = firstElem;
+        for (int i = 0; i < index; i++) {
+            result = result.next;
+        }
+
+        return result.data;
+    }
 
     /**
      * Add.
@@ -125,23 +121,19 @@ public class HelperClassLink<T> implements Iterable<T> {
      */
     public void add(T item) {
 
-            if (item == null)
-            {
-                throw new NullPointerException("The first argument for addLast() is null.");
-            }
-            if (!isEmpty())
-            {
-                Node prev = lastElem;
-                lastElem = new Node(item, null);
-                prev.next = lastElem;
-            }
-            else
-                {
-                    lastElem = new Node(item, null);
-                    firstElem = lastElem;
-                }
-            N++;
+        if (item == null) {
+            throw new NullPointerException("The first argument for addLast() is null.");
         }
+        if (!isEmpty()) {
+            Node prev = lastElem;
+            lastElem = new Node(item, null);
+            prev.next = lastElem;
+        } else {
+            lastElem = new Node(item, null);
+            firstElem = lastElem;
+        }
+        N++;
+    }
 
     /**
      * Remove boolean.
@@ -151,21 +143,21 @@ public class HelperClassLink<T> implements Iterable<T> {
      */
     public boolean remove(int index) {
 
-            if (index < 0 || index > N - 1) {
-                throw new IllegalArgumentException();
-            }
-            if (index == 0) {
-                firstElem = firstElem.next;
-                System.out.println("removing is \n" + firstElem.data.toString());
-            } else {
-                Node node = findNodeBeforeByIndex(index);
-                Node tmp = findByIndex(index);
-                node.next = tmp.next;
-                System.out.println("removing is \n" + tmp.data.toString());
-            }
-            N--;
-            return false;
+        if (index < 0 || index > N - 1) {
+            throw new IllegalArgumentException();
         }
+        if (index == 0) {
+            firstElem = firstElem.next;
+            System.out.println("removing is \n" + firstElem.data.toString());
+        } else {
+            Node node = findNodeBeforeByIndex(index);
+            Node tmp = findByIndex(index);
+            node.next = tmp.next;
+            System.out.println("removing is \n" + tmp.data.toString());
+        }
+        N--;
+        return false;
+    }
 
     /**
      * Remove element boolean.
@@ -175,43 +167,43 @@ public class HelperClassLink<T> implements Iterable<T> {
      */
     public boolean removeElement(T element) {
 
-            if (N == 0) {
-                return false;
-            } else if (N == 1) {
-                firstElem = null;
-                lastElem = null;
-                N = 0;
-                return true;
-            }
-
-            Node nodeBefore = findNodeBefore(element);
-
-            if (nodeBefore.data == null) {
-                firstElem = firstElem.next;
-                N--;
-                return true;
-            } else if (nodeBefore != null) {
-                if (lastElem.data == element) {
-                    nodeBefore.next = null;
-                    lastElem = nodeBefore;
-                } else {
-                    nodeBefore.next = nodeBefore.next.next;
-                }
-                N--;
-                return true;
-            }
+        if (N == 0) {
             return false;
+        } else if (N == 1) {
+            firstElem = null;
+            lastElem = null;
+            N = 0;
+            return true;
         }
+
+        Node nodeBefore = findNodeBefore(element);
+
+        if (nodeBefore.data == null) {
+            firstElem = firstElem.next;
+            N--;
+            return true;
+        } else if (nodeBefore != null) {
+            if (lastElem.data == element) {
+                nodeBefore.next = null;
+                lastElem = nodeBefore;
+            } else {
+                nodeBefore.next = nodeBefore.next.next;
+            }
+            N--;
+            return true;
+        }
+        return false;
+    }
 
     /**
      * Size int.
      *
      * @return the int
      */
-    public int size(){
+    public int size() {
 
-             return N;
-        }
+        return N;
+    }
 
     /**
      * Is empty boolean.
@@ -220,201 +212,186 @@ public class HelperClassLink<T> implements Iterable<T> {
      */
     public boolean isEmpty() {
 
-            return N == 0;
-        }
+        return N == 0;
+    }
 
-    public Iterator<T> iterator(){
+    public Iterator<T> iterator() {
 
-            return new LinkedListIterator();
-        }
+        return new LinkedListIterator();
+    }
 
     @Override
     public String toString() {
 
-            StringBuilder s = new StringBuilder();
-            for (T item : this)
-                s.append(item + " ");
-            return s.toString();
-        }
+        StringBuilder s = new StringBuilder();
+        for (T item : this)
+            s.append(item + " ");
+        return s.toString();
+    }
 
     /**
      * Print list.
      */
-    public void printList(){
+    public void printList() {
 
-            String str = "";
-            for(T item : this)
-            {
-                str += item.toString();
-            }
-            System.out.println(str);
+        String str = "";
+        for (T item : this) {
+            str += item.toString();
         }
+        System.out.println(str);
+    }
 
     private Node findByIndex(int index) {
 
-            if (index < 0 || index > N - 1) {
-                throw new IndexOutOfBoundsException();
-            }
-            int tmpIndex = 0;
-            if (firstElem == null) {
-                throw new IndexOutOfBoundsException();
-            }
-
-            if (index == 0) {
-                return firstElem;
-            }
-
-            Node node = firstElem;
-            while (node.next != null) {
-                node = node.next;
-                tmpIndex++;
-                if (tmpIndex == index) {
-                    return node;
-                }
-            }
+        if (index < 0 || index > N - 1) {
             throw new IndexOutOfBoundsException();
         }
+        int tmpIndex = 0;
+        if (firstElem == null) {
+            throw new IndexOutOfBoundsException();
+        }
+
+        if (index == 0) {
+            return firstElem;
+        }
+
+        Node node = firstElem;
+        while (node.next != null) {
+            node = node.next;
+            tmpIndex++;
+            if (tmpIndex == index) {
+                return node;
+            }
+        }
+        throw new IndexOutOfBoundsException();
+    }
+
     private Node findNodeBefore(T value) {
 
-            if (firstElem.data == value) {
-                Node res = new Node(firstElem.data, firstElem.next);
-                return res;
-            }
-
-            Node node = firstElem;
-            while (node.next != null) {
-                if (node.next == value) {
-                    return node;
-                }
-                node = node.next;
-            }
-            return null;
+        if (firstElem.data == value) {
+            Node res = new Node(firstElem.data, firstElem.next);
+            return res;
         }
+
+        Node node = firstElem;
+        while (node.next != null) {
+            if (node.next == value) {
+                return node;
+            }
+            node = node.next;
+        }
+        return null;
+    }
 
     private Node findNodeBeforeByIndex(int index) {
 
-            if (index <= 0 || index > N - 1) {
-                return null;
-            }
-
-            int count = 0;
-            Node node = firstElem;
-            while (node.next != null) {
-                if (count == index - 1) {
-                    return node;
-                }
-                count++;
-                node = node.next;
-            }
+        if (index <= 0 || index > N - 1) {
             return null;
         }
+
+        int count = 0;
+        Node node = firstElem;
+        while (node.next != null) {
+            if (count == index - 1) {
+                return node;
+            }
+            count++;
+            node = node.next;
+        }
+        return null;
+    }
 
     /**
      * Serialization xml.
      */
-    public void serializationXML(){
+    public void serializationXML() {
 
-            try{
-                XMLEncoder encoder = new XMLEncoder(
-                     new BufferedOutputStream(
-                         new FileOutputStream( ConsoleFile.MenuFillOut(".xml"))));
+        try {
+            XMLEncoder encoder = new XMLEncoder(
+                    new BufferedOutputStream(
+                            new FileOutputStream(ConsoleFile.MenuFillOut(".xml"))));
 
-                encoder.writeObject(this.size());
+            encoder.writeObject(this.size());
 
-                for(T shop : this) {
-                    encoder.writeObject(shop);
-                }
-
-                encoder.close();
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
+            for (T shop : this) {
+                encoder.writeObject(shop);
             }
+
+            encoder.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
+    }
 
     /**
      * Serialization bin.
      */
-    public void serializationBIN(){
-            File file = ConsoleFile.MenuFillOut(".bin");///pathname
-            try {
-                FileOutputStream fos = new FileOutputStream(file);
-                ObjectOutputStream oos = new ObjectOutputStream(fos);
+    public void serializationBIN() {
+        File file = ConsoleFile.MenuFillOut(".bin");///pathname
+        try {
+            FileOutputStream fos = new FileOutputStream(file);
+            ObjectOutputStream oos = new ObjectOutputStream(fos);
 
-                oos.writeObject(this.size());
-                System.out.println("size :" + this.size());
-                for (T el : this)
-                {
-                    oos.writeObject(el);
-                }
+            oos.writeObject(this.size());
+            System.out.println("size :" + this.size());
+            for (T el : this) {
+                oos.writeObject(el);
             }
-            catch(FileNotFoundException e)
-            {
-                e.printStackTrace();
-            }
-            catch (IOException e) {
-                e.printStackTrace();
-            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
+    }
 
     /**
      * Deserializtion bin.
      */
-    public void deserializationBIN(){
-            File file = ConsoleFile.MenuFillIn(".bin");///pathname
-            try {
-                FileInputStream fis = new FileInputStream(file);///pathname
-                ObjectInputStream ois = new ObjectInputStream(fis);
-                Integer count = ois.readInt();
-                for(int i = 0; i < count; i++)
-                {
-                    this.add((T) ois.readObject());
-                }
-
+    public void deserializationBIN() {
+        File file = ConsoleFile.MenuFillIn(".bin");///pathname
+        try {
+            FileInputStream fis = new FileInputStream(file);///pathname
+            ObjectInputStream ois = new ObjectInputStream(fis);
+            Integer count = ois.readInt();
+            for (int i = 0; i < count; i++) {
+                this.add((T) ois.readObject());
             }
-            catch(FileNotFoundException e) {e.printStackTrace();}
-            catch (IOException e) {e.printStackTrace();	}
-            catch (ClassNotFoundException e) {e.printStackTrace();	}
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
         }
+    }
 
     /**
      * Deserializtion xml.
      */
-    public void deserializationXML(){
-            try{
-                XMLDecoder decoder = new XMLDecoder(
-                        new BufferedInputStream(
-                                new FileInputStream(ConsoleFile.MenuFillIn(".xml"))
-                        )
-                );
+    public void deserializationXML() {
+        try {
+            XMLDecoder decoder = new XMLDecoder(
+                    new BufferedInputStream(
+                            new FileInputStream(ConsoleFile.MenuFillIn(".xml"))
+                    )
+            );
 
-                int count = (int) decoder.readObject();
+            int count = (int) decoder.readObject();
 
-                for(int i = 0; i < count; i++)
-                {
-                    T shops = (T)decoder.readObject();
-                    this.add(shops);
-                }
-                decoder.close();
-
+            for (int i = 0; i < count; i++) {
+                T shops = (T) decoder.readObject();
+                this.add(shops);
             }
-            catch(FileNotFoundException e) {e.printStackTrace();}
-        }
+            decoder.close();
 
-
-    /**
-     * To own array array.
-     *
-     * @return the array
-     */
-    public Array<T> toOwnArray() {
-        Array<T> save = new SaveArray<>();
-        for(int i = 0; i > N; i++) {
-            save.add(this.get(i));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
         }
-        return save;
     }
+
 
     /**
      * To array t [ ].
@@ -423,7 +400,7 @@ public class HelperClassLink<T> implements Iterable<T> {
      */
     public T[] toArray() {
         T[] arr = (T[]) new Object[N];
-        for(int i = 0; i < N; i++) arr[i] = get(i);
+        for (int i = 0; i < N; i++) arr[i] = get(i);
         return arr;
     }
 
@@ -432,8 +409,8 @@ public class HelperClassLink<T> implements Iterable<T> {
      *
      * @param array the array
      */
-    public void fromArray(T[] array){
-        for(int i = 0; i < array.length; i++){
+    public void fromArray(T[] array) {
+        for (int i = 0; i < array.length; i++) {
             add(array[i]);
         }
     }

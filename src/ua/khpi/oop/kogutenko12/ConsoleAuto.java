@@ -32,12 +32,15 @@ public class ConsoleAuto {
             hlAuto.printList();
             System.out.println("----------------------------------------------------------------------------------------------------------------------");
             Shops newShop = new Shops(9,
-                                "prod_9",
-                                 "l",
-                                130,
-                                 133,
-                                      new Date(17,2,2021),
-                                      new HashMap<String, String>(){{put("color","new_color");put("weight","10");}});
+                    "prod_9",
+                    "l",
+                    130,
+                    133,
+                    new Date(17, 2, 2021),
+                    new HashMap<String, String>() {{
+                        put("color", "new_color");
+                        put("weight", "10");
+                    }});
             System.out.println("new elem is\n" + newShop.toString());
             hlAuto.add(newShop);
             System.out.println("Container after adding\n----------------------------------------------------------------------------------------------------------------------");
@@ -55,18 +58,16 @@ public class ConsoleAuto {
             System.out.println("Fresh product:\n" + findFresh() + "----------------------------------------------------------------------------------------------------------------------");
 
             serializationTXT();
-        }
-        finally {
+        } finally {
             System.out.println("End auto...");
         }
     }
 
-    private void serializationTXT(){
+    private void serializationTXT() {
         File file = new File("D:\\eclips-workspace\\kogutenko-oleksandr\\src\\ua\\khpi\\oop\\txt10-" + new Random().nextInt() % 20 + ".txt");///pathname
         try (PrintWriter pw = new PrintWriter(new FileOutputStream(file))) {
             System.out.println("size :" + hlAuto.size());
-            for (Shops el : hlAuto)
-            {
+            for (Shops el : hlAuto) {
                 pw.write(el.toString());
             }
 
@@ -78,7 +79,7 @@ public class ConsoleAuto {
     /**
      * Deserializtion txt.
      */
-    private void deserializationTXT(){
+    private void deserializationTXT() {
         File file = new File("D:\\eclips-workspace\\kogutenko-oleksandr\\src\\ua\\khpi\\oop\\txt10.txt");///pathname
         try {
             Pattern p;
@@ -98,7 +99,7 @@ public class ConsoleAuto {
                     p = Pattern.compile("[0-9]+");
                     id = line.substring(4, line.indexOf(" | name:"));
                     m = p.matcher(id);
-                    if(!m.matches()){
+                    if (!m.matches()) {
                         id = "0";
                     }
                 }
@@ -107,7 +108,7 @@ public class ConsoleAuto {
                     p = Pattern.compile("^[\\w]{3,15}$");
                     name = line.substring(line.indexOf("name: ") + 6, line.indexOf(" | unit:"));
                     m = p.matcher(name);
-                    if(!m.matches()){
+                    if (!m.matches()) {
                         name = "prod";
                     }
                 }
@@ -116,40 +117,40 @@ public class ConsoleAuto {
                     p = Pattern.compile("kg|l|kg/l");
                     unit = line.substring(line.indexOf("unit:") + 6, line.indexOf(" | count: "));
                     m = p.matcher(unit);
-                    if(!m.matches()) {
+                    if (!m.matches()) {
                         unit = "obj";
                     }
                 }
-                if(line.contains("count:")){
+                if (line.contains("count:")) {
                     //regex
                     p = Pattern.compile("[0-9]+");
                     count = line.substring(line.indexOf("count:") + 7, line.indexOf(" | price: "));
                     m = p.matcher(count);
-                    if(!m.matches()){
+                    if (!m.matches()) {
                         count = "0";
                     }
                 }
-                if(line. contains("price")){
+                if (line.contains("price")) {
                     //regex
                     p = Pattern.compile("[0-9]+");
                     price = line.substring(line.indexOf("price:") + 7, line.indexOf(" | date: "));
                     m = p.matcher(price);
-                    if(!m.matches()){
+                    if (!m.matches()) {
                         price = "0";
                     }
 
                 }
-                if(line.contains("date:")){
+                if (line.contains("date:")) {
                     //regex
 
                     p = Pattern.compile("^(?:(?:31(\\/|-|\\.)(?:0?[13578]|1[02]))\\1|(?:(?:29|30)(\\/|-|\\.)(?:0?[1,3-9]|1[0-2])\\2))(?:(?:1[6-9]|[2-9]\\d)?\\d{2})$|^(?:29(\\/|-|\\.)0?2\\3(?:(?:(?:1[6-9]|[2-9]\\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\\d|2[0-8])(\\/|-|\\.)(?:(?:0?[1-9])|(?:1[0-2]))\\4(?:(?:1[6-9]|[2-9]\\d)?\\d{2})$");
                     date = line.substring(line.indexOf("date:") + 6, line.indexOf(" | description: "));
                     m = p.matcher(date);
-                    if(!m.matches()) {
+                    if (!m.matches()) {
                         date = "01/01/2021";
                     }
                 }
-                if(line.contains("description:")){
+                if (line.contains("description:")) {
                     //regex
                     description = line.substring(line.indexOf("description:") + 13, line.length() - 1);
                 }
@@ -164,9 +165,11 @@ public class ConsoleAuto {
                 shop.setDescription(description);
                 hlAuto.add(shop);
             }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-        catch(FileNotFoundException e) {e.printStackTrace();}
-        catch (IOException e) {e.printStackTrace();	}
         //catch (ClassNotFoundException e) {e.printStackTrace();}
     }
 
@@ -191,19 +194,19 @@ public class ConsoleAuto {
 
     private void bubbleSort(Shops[] array, int field) {
         boolean sorted = false;
-        while(!sorted) {
+        while (!sorted) {
             sorted = true;
             for (int i = 1; i < array.length; i++) {
                 if (compare(array[i], array[i - 1], field)) {
-                    swap(array, i , i-1);
+                    swap(array, i, i - 1);
                     sorted = false;
                 }
             }
         }
     }
 
-    private boolean compare(Shops a, Shops b, int field){
-        switch (field){
+    private boolean compare(Shops a, Shops b, int field) {
+        switch (field) {
             case 1:
                 return a.getName().compareTo(b.getName()) >= 0;
             case 2:
@@ -224,7 +227,7 @@ public class ConsoleAuto {
         array[ind2] = tmp;
     }
 
-    public String findFresh(){
+    public String findFresh() {
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
         java.util.Date date = new java.util.Date();
         System.out.println(dateFormat.format(date));
@@ -232,19 +235,19 @@ public class ConsoleAuto {
         String[] dateArr = dateStr.split("/");
         int currYear = Integer.parseInt(dateArr[0]), currMon = Integer.parseInt(dateArr[1]), currDay = Integer.parseInt(dateArr[2]);
         String str = "";
-        for(Shops shop : hlAuto) {
+        for (Shops shop : hlAuto) {
             int prodY = shop.getDate().getYear();
             int prodM = shop.getDate().getMonth();
             int prodD = shop.getDate().getDay();
-            if(prodY == currYear){ // if year prod == curr year
-                if(prodM == currMon){
-                    if(prodD >= currDay){
+            if (prodY == currYear) { // if year prod == curr year
+                if (prodM == currMon) {
+                    if (prodD >= currDay) {
                         str += shop.toString();
                     }
-                } else if (currMon - prodM == 1 && prodD >= currDay){
+                } else if (currMon - prodM == 1 && prodD >= currDay) {
                     str += shop.toString();
                 }
-            } else if(prodY == currYear - 1 && prodM == 12 && prodD >= currDay){
+            } else if (prodY == currYear - 1 && prodM == 12 && prodD >= currDay) {
                 str += shop.toString();
             }
         }

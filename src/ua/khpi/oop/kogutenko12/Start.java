@@ -9,13 +9,11 @@ public class Start {
      *
      * @param args the input arguments
      */
-    public static void main(String[] args)
-    {
-        if(args[0].equals("-auto")){
+    public static void main(String[] args) {
+        if (args[0].equals("-auto")) {
             ConsoleAuto ca = new ConsoleAuto();
             ca.startConsole();
-        }
-        else{
+        } else {
             InteractiveConsole console = new InteractiveConsole();
             console.startConsole();
         }

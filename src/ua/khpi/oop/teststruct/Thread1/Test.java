@@ -1,6 +1,20 @@
-package ua.khpi.oop.teststruct;
+package ua.khpi.oop.teststruct.Thread1;
 
 import java.util.concurrent.atomic.AtomicInteger;
+
+public class Test{
+
+    public static void main(String[] args) throws InterruptedException {
+// 1
+//
+// 2
+//        System.out.println("start interference");
+//        new InterferenceExample().example();
+//        System.out.println("end interference\n");
+// 3
+//        SeriesRunExample.example();
+    }
+}
 
 class SeriesRunExample extends Thread{
     private static int currentMax = 1;
@@ -50,9 +64,9 @@ class RandomRunThread extends Thread{
 }
 
 class StateObject{
-   private int i;
-   public synchronized void increment(){i++;}
-   public int getI(){return i;}
+    private int i;
+    public synchronized void increment(){i++;}
+    public int getI(){return i;}
 }
 
 class InterferenceThread extends Thread{
@@ -108,21 +122,5 @@ class InterferenceExample{
         thread1.join();
         System.out.println("Expected: " + HundredMillion);
         System.out.println("Result:   " + thread1.getI());
-    }
-}
-
-public class Test{
-
-    public static void main(String[] args) throws InterruptedException {
-// 1
-//        System.out.println("start...");
-//        RandomRunThread.example();
-//        System.out.println("end....");
-// 2
-//        System.out.println("start interference");
-//        new InterferenceExample().example();
-//        System.out.println("end interference\n");
-// 3
-//        SeriesRunExample.example();
     }
 }

@@ -18,7 +18,7 @@ public class Shops implements Serializable {
     private int count;
     private int price;
     private Date date = new Date();
-    private Map<String,String> description = new HashMap<String, String>();
+    private Map<String, String> description = new HashMap<String, String>();
 
     /**
      * Gets price.
@@ -63,7 +63,7 @@ public class Shops implements Serializable {
      */
     public String getDescriptionInfo() {
         String str = "";
-        for(Map.Entry<String, String> entry: description.entrySet())
+        for (Map.Entry<String, String> entry : description.entrySet())
             str += entry.getKey() + " - " + entry.getValue() + ",";
         return str;
     }
@@ -75,7 +75,7 @@ public class Shops implements Serializable {
      * @param val the val
      */
     public void setDescription(String key, String val) {
-        this.description.put(key,val);
+        this.description.put(key, val);
     }
 
     /**
@@ -90,27 +90,27 @@ public class Shops implements Serializable {
         String[] str = description.split(",");
         String[] strAdd;
         int count = 0;
-        for(int i = 0; i < str.length; i++) {
+        for (int i = 0; i < str.length; i++) {
             strAdd = str[i].split(" - ");
             p = Pattern.compile("[\\w]{15}]");
             key = strAdd[0];
             m = p.matcher(key);
-            if(m.matches()){
+            if (m.matches()) {
                 key = "key";
             }
             val = strAdd[1];
             m = p.matcher(val);
-            if(m.matches()){
+            if (m.matches()) {
                 val = "val";
             }
-            this.description.put(key,val);
+            this.description.put(key, val);
         }
     }
 
     /**
      * Instantiates a new Shops.
      */
-    public Shops(){
+    public Shops() {
         id = 0;
         name = "";
         unit = "";
@@ -145,7 +145,7 @@ public class Shops implements Serializable {
         this.unit = unit;
         this.count = count;
         this.price = price;
-        this.date.setDate(date.getDay(),date.getMonth(),date.getYear());
+        this.date.setDate(date.getDay(), date.getMonth(), date.getYear());
         setDescription(description);
     }
 
@@ -249,21 +249,21 @@ public class Shops implements Serializable {
     }
 
     public String toString() {
-        String info = "id: "          + id +
-                   " | name: "        + name +
-                   " | unit: "        + unit +
-                   " | count: "       + count +
-                   " | price: "       + price +
-                   " | date: "        + date.GetDate() +
-                   " | description: " + getDescriptionInfo() +
-                   "\n";
+        String info = "id: " + id +
+                " | name: " + name +
+                " | unit: " + unit +
+                " | count: " + count +
+                " | price: " + price +
+                " | date: " + date.GetDate() +
+                " | description: " + getDescriptionInfo() +
+                "\n";
         return info;
     }
 
     /**
      * Add.
      */
-    public void add(){
+    public void add() {
         //regex!!!!!!
         Pattern p;
         Matcher m;
@@ -271,12 +271,12 @@ public class Shops implements Serializable {
         String id = null, name = null, unit = null, count = null, price = null, day = null, mon = null, year = null, key = null, val = null, date = null;
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter info:\n");
-        while(regexLoop) {
+        while (regexLoop) {
             System.out.print("Enter id: ");
             p = Pattern.compile("[0-9]+");
             id = sc.nextLine();
             m = p.matcher(id);
-            if(m.matches()){
+            if (m.matches()) {
                 setId(Integer.parseInt(id));
                 regexLoop = false;
             } else {
@@ -285,12 +285,12 @@ public class Shops implements Serializable {
         }
 
         regexLoop = true;
-        while(regexLoop){
+        while (regexLoop) {
             System.out.print("Enter name: ");
             p = Pattern.compile("^[\\w]{3,15}$");
             name = sc.nextLine();
             m = p.matcher(name);
-            if(m.matches()){
+            if (m.matches()) {
                 setName(name);
                 regexLoop = false;
             } else {
@@ -299,12 +299,12 @@ public class Shops implements Serializable {
         }
 
         regexLoop = true;
-        while(regexLoop){
+        while (regexLoop) {
             System.out.print("Enter unit: ");
             p = Pattern.compile("kg|l|kg/l");
             unit = sc.nextLine();
             m = p.matcher(unit);
-            if(m.matches()){
+            if (m.matches()) {
                 setUnit(unit);
                 regexLoop = false;
             } else {
@@ -312,12 +312,12 @@ public class Shops implements Serializable {
             }
         }
         regexLoop = true;
-        while(regexLoop){
+        while (regexLoop) {
             System.out.print("Enter count: ");
             p = Pattern.compile("[0-9]+");
             count = sc.nextLine();
             m = p.matcher(count);
-            if(m.matches()){
+            if (m.matches()) {
                 setCount(Integer.parseInt(count));
                 regexLoop = false;
             } else {
@@ -325,12 +325,12 @@ public class Shops implements Serializable {
             }
         }
         regexLoop = true;
-        while(regexLoop){
+        while (regexLoop) {
             System.out.print("Enter price: ");
             p = Pattern.compile("[0-9]+");
             price = sc.nextLine();
             m = p.matcher(price);
-            if(m.matches()){
+            if (m.matches()) {
                 setPrice(Integer.parseInt(price));
                 regexLoop = false;
             } else {
@@ -339,15 +339,15 @@ public class Shops implements Serializable {
         }
 
         regexLoop = true;
-        while(regexLoop){
+        while (regexLoop) {
             System.out.print("Enter date('dd-mm-yyyy' or 'dd/mm/yyyy' or 'dd.m.yyyy'): ");
             p = Pattern.compile("^(?:(?:31(\\/|-|\\.)(?:0?[13578]|1[02]))\\1|(?:(?:29|30)(\\/|-|\\.)(?:0?[1,3-9]|1[0-2])\\2))(?:(?:1[6-9]|[2-9]\\d)?\\d{2})$|^(?:29(\\/|-|\\.)0?2\\3(?:(?:(?:1[6-9]|[2-9]\\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\\d|2[0-8])(\\/|-|\\.)(?:(?:0?[1-9])|(?:1[0-2]))\\4(?:(?:1[6-9]|[2-9]\\d)?\\d{2})$");
             date = sc.nextLine();
             m = p.matcher(date);
-            if(m.matches()){
-                day = date.substring(0,2);
-                mon = date.substring(3,5);
-                year = date.substring(6,10);
+            if (m.matches()) {
+                day = date.substring(0, 2);
+                mon = date.substring(3, 5);
+                year = date.substring(6, 10);
                 regexLoop = false;
             } else {
                 System.out.println("Enter info correctly!!!");
@@ -360,32 +360,31 @@ public class Shops implements Serializable {
         boolean check = true;
         while (check) {
             regexLoop = true;
-            while(regexLoop){
+            while (regexLoop) {
                 System.out.print("Enter key: ");
                 p = Pattern.compile("[\\w]{15}");
                 key = sc.nextLine();
                 m = p.matcher(key);
-                if(m.matches()){
-                    while(regexLoop){
+                if (m.matches()) {
+                    while (regexLoop) {
                         System.out.print("Enter val: ");
                         p = Pattern.compile("[\\w]{15}");
                         val = sc.nextLine();
                         m = p.matcher(val);
-                        if(m.matches()){
-                            this.description.put(key,val);
+                        if (m.matches()) {
+                            this.description.put(key, val);
                             regexLoop = false;
-                        } else{
+                        } else {
                             System.out.println("Enter info correctly!!!\nOnly numbers, letters and '_'");
                         }
                     }
-                }else{
+                } else {
                     System.out.println("Enter info correctly!!!\nOnly numbers, letters and '_' or '-'");
                 }
             }
             System.out.print("Do you want to add mor one description? (0 - no, 1 - yes)\n>>> ");
             int answer = sc.nextInt();
-            if (answer == 0)
-            {
+            if (answer == 0) {
                 check = false;
             }
         }

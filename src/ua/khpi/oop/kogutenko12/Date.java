@@ -1,4 +1,5 @@
 package ua.khpi.oop.kogutenko12;
+
 import java.io.Serializable;
 
 /**
@@ -12,11 +13,10 @@ public class Date implements Serializable {
     /**
      * Instantiates a new Date.
      */
-    Date()
-    {
+    Date() {
         this.day = 1;
         this.year = 1970;
-        this.month=1;
+        this.month = 1;
     }
 
     /**
@@ -26,8 +26,7 @@ public class Date implements Serializable {
      * @param mon  the mon
      * @param year the year
      */
-    Date(int day, int mon, int year)
-    {
+    Date(int day, int mon, int year) {
         this.day = day;
         this.year = year;
         this.month = mon;
@@ -92,8 +91,7 @@ public class Date implements Serializable {
      *
      * @return the date
      */
-    public String getDate()
-    {
+    public String getDate() {
         return day + "." + month + "." + year;
     }
 
@@ -108,14 +106,11 @@ public class Date implements Serializable {
         String dayS = day.toString(), monS = mon.toString(), yearS = year.toString();
         if (day < 10 && mon >= 10) {
             ss = ss + "0" + dayS + "." + monS + "." + yearS;
-        }
-        else if (mon < 10 && day >= 10) {
+        } else if (mon < 10 && day >= 10) {
             ss = ss + dayS + "." + "0" + monS + "." + yearS;
-        }
-        else if (mon < 10 && day < 10) {
+        } else if (mon < 10 && day < 10) {
             ss = ss + "0" + dayS + "." + "0" + monS + "." + yearS;
-        }
-        else {
+        } else {
             ss = ss + dayS + "." + monS + "." + yearS;
         }
         return ss;
@@ -128,17 +123,16 @@ public class Date implements Serializable {
      * @param mon  the mon
      * @param year the year
      */
-    public void setDate(int day, int mon, int year)
-    {
-        if(day > 0 && day <= 31)
+    public void setDate(int day, int mon, int year) {
+        if (day > 0 && day <= 31)
             setDay(day);
         else
             setDay(1);
-        if(mon > 0 && mon <= 12)
+        if (mon > 0 && mon <= 12)
             setMonth(mon);
         else
             setMonth(1);
-        if(year > 1970 && year < 2022)
+        if (year > 1970 && year < 2022)
             setYear(year);
         else
             setYear(2021);
@@ -149,14 +143,13 @@ public class Date implements Serializable {
      *
      * @param date the date
      */
-    public void setDate(String date)
-    {
-       String[] dateBuff = date.split("\\.");
-       setDate(
-               Integer.parseInt(dateBuff[0]),
-               Integer.parseInt(dateBuff[1]),
-               Integer.parseInt(dateBuff[2])
-       );
+    public void setDate(String date) {
+        String[] dateBuff = date.split("\\.");
+        setDate(
+                Integer.parseInt(dateBuff[0]),
+                Integer.parseInt(dateBuff[1]),
+                Integer.parseInt(dateBuff[2])
+        );
     }
 
 }

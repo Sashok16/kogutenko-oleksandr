@@ -1,4 +1,5 @@
 package ua.khpi.oop.kogutenko12;
+
 import java.io.File;
 import java.util.Scanner;
 
@@ -17,19 +18,18 @@ public class ConsoleFile {
      *
      * @return the int
      */
-    public static int dialogOut()
-    {
+    public static int dialogOut() {
         System.out.print("---------------------------------------------------------"
-                       + "\n\nsave collection to...\n"
-                       + "choice command:"
-                       + "\n 1 - location"
-                       + "\n 2 - directory files"
-                       + "\n 3 - out of directory"
-                       + "\n 4 - take file to check"
-                       + "\n 5 - create directory here"
-                       + "\n 6 - go to another way : "
-                       + "\n 7 - name of file which contain your collection's data"
-                       + "\n\n>>> ");
+                + "\n\nsave collection to...\n"
+                + "choice command:"
+                + "\n 1 - location"
+                + "\n 2 - directory files"
+                + "\n 3 - out of directory"
+                + "\n 4 - take file to check"
+                + "\n 5 - create directory here"
+                + "\n 6 - go to another way : "
+                + "\n 7 - name of file which contain your collection's data"
+                + "\n\n>>> ");
         //regex
         String out = in.nextLine();
         //
@@ -45,12 +45,12 @@ public class ConsoleFile {
     public static File MenuFillOut(String fileExtension) ///функціє проводить координування по можливостям програм
     {
         File file = new File("D:/eclips-workspace/kogutenko-oleksandr/src/ua/khpi/oop/");
-        while(true)///нескінченний цикл який дозволяє працювати програмі
+        while (true)///нескінченний цикл який дозволяє працювати програмі
         {
             try {
-                int  key = dialogOut();
+                int key = dialogOut();
 
-                switch(key)///пошук введеної команди
+                switch (key)///пошук введеної команди
                 {
                     case 1:
                         System.out.println("\nway: " + file.getPath()); //getAbsolutePath
@@ -59,9 +59,8 @@ public class ConsoleFile {
                     case 2:
                         int a = 0;
                         System.out.print("files: " + file.getPath() + "\n");
-                        for (File file2 : file.listFiles())
-                        {
-                            if ( a % 5 == 0 )
+                        for (File file2 : file.listFiles()) {
+                            if (a % 5 == 0)
                                 System.out.print("\n");
                             a++;
                             System.out.printf("%-25s  ", file2.getName());
@@ -86,8 +85,8 @@ public class ConsoleFile {
                         file = new File(file.getAbsolutePath() + "/" + fileName_4);
                         if (file.isFile() == true)
                             return file;
-                        if(file.isDirectory() == true);
-                        else  {
+                        if (file.isDirectory() == true) ;
+                        else {
                             System.out.print("NOT FOUND");
                             file = file.getParentFile();
                         }
@@ -103,7 +102,7 @@ public class ConsoleFile {
                         //regex..
                         String direct = in.nextLine();
                         //
-                        File dir = new File(file.getPath()+"/" + direct);
+                        File dir = new File(file.getPath() + "/" + direct);
                         System.out.println("create directory: " + dir.mkdirs());
                         /*
                         enter name of directory:  /somedirect
@@ -116,9 +115,8 @@ public class ConsoleFile {
                         String s3 = in.nextLine();
                         //
                         String s2 = new String();
-                        for (int i = 0; i < s3.length(); i++)
-                        {
-                            if (s3.charAt(i)=='\\')
+                        for (int i = 0; i < s3.length(); i++) {
+                            if (s3.charAt(i) == '\\')
                                 s2 += "/";
                             else
                                 s2 += s3.charAt(i);
@@ -134,9 +132,7 @@ public class ConsoleFile {
                         //
                         return new File(file.getAbsolutePath() + "/" + fileName_7 + fileExtension);
                 }
-            }
-            catch(Exception e)
-            {
+            } catch (Exception e) {
                 System.out.println("EROR EROR EROR EROR EROR EROR EROR ERROR\n");
                 System.out.println(e);
                 break;
@@ -151,18 +147,17 @@ public class ConsoleFile {
      *
      * @return the int
      */
-    public static int dialogIn()
-    {
+    public static int dialogIn() {
         System.out.print("---------------------------------------------------------"
-                       + "\n\ncreate collection from..."
-                       + "choice command:"
-                       + "\n 1 - location"
-                       + "\n 2 - directory files"
-                       + "\n 3 - go to another directory"
-                       + "\n 4 - out of directory"
-                       + "\n 5 - choice file to create collection"
-                       + "\n 6 - go to... :"
-                       + "\n\n>>> ");
+                + "\n\ncreate collection from..."
+                + "choice command:"
+                + "\n 1 - location"
+                + "\n 2 - directory files"
+                + "\n 3 - go to another directory"
+                + "\n 4 - out of directory"
+                + "\n 5 - choice file to create collection"
+                + "\n 6 - go to... :"
+                + "\n\n>>> ");
         //regex
         String in_s = in.nextLine();
         //
@@ -178,12 +173,12 @@ public class ConsoleFile {
     public static File MenuFillIn(String fileExtension) ///функціє проводить координування по можливостям програм
     {
         File file = new File("D:/eclips-workspace/kogutenko-oleksandr/src/ua/khpi/oop/");
-        while(true)///нескінченний цикл який дозволяє працювати програмі
+        while (true)///нескінченний цикл який дозволяє працювати програмі
         {
             try {
-                int  key = dialogIn();
+                int key = dialogIn();
 
-                switch(key)///пошук введеної команди
+                switch (key)///пошук введеної команди
                 {
                     case 1:
                         System.out.println("\nway: " + file.getPath()); //getAbsolutePath
@@ -191,9 +186,8 @@ public class ConsoleFile {
                     case 2:
                         int a = 0;
                         System.out.print("files: \n" + file.getPath() + "\n");
-                        for (File file2 : file.listFiles())
-                        {
-                            if ( a % 4 == 0)
+                        for (File file2 : file.listFiles()) {
+                            if (a % 4 == 0)
                                 System.out.print("\n");
                             a++;
                             System.out.printf("%-30s  ", file2.getName());
@@ -205,8 +199,7 @@ public class ConsoleFile {
                         String fileNameIn_3 = in.nextLine();
                         //
                         file = new File(file.getAbsolutePath() + "/" + fileNameIn_3);
-                        if (file.isDirectory() == false)
-                        {
+                        if (file.isDirectory() == false) {
                             System.out.print("NOT FOUND");
                             file = file.getParentFile();
                         }
@@ -224,19 +217,17 @@ public class ConsoleFile {
                         if (file.isFile() == true) {
                             System.out.println("file found");
                             return file;
-                        }else System.out.println("file NOT found");
+                        } else System.out.println("file NOT found");
                         break;
-                    case 6:
-                    {
+                    case 6: {
                         System.out.print("enter way: ");
                         //regex
                         String s3 = in.nextLine();
                         //
                         String s2 = new String();
-                        for (int i=0; i < s3.length(); i++)
-                        {
-                            if (s3.charAt(i)=='\\')
-                                s2+="/";
+                        for (int i = 0; i < s3.length(); i++) {
+                            if (s3.charAt(i) == '\\')
+                                s2 += "/";
                             else
                                 s2 += s3.charAt(i);
                         }
@@ -244,9 +235,7 @@ public class ConsoleFile {
                     }
                     break;
                 }
-            }
-            catch(Exception e)
-            {
+            } catch (Exception e) {
                 System.out.println(" EROR EROR EROR EROR EROR EROR EROR EROR EROR \n");
                 System.out.println(e);
                 break;
