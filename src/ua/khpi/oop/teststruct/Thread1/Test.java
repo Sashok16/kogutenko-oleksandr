@@ -6,10 +6,10 @@ public class Test{
 
     public static void main(String[] args) throws InterruptedException {
 // 1
-//
+//        RandomRunThread.example();
 // 2
 //        System.out.println("start interference");
-//        new InterferenceExample().example();
+        new InterferenceExample().example();
 //        System.out.println("end interference\n");
 // 3
 //        SeriesRunExample.example();
@@ -75,34 +75,34 @@ class InterferenceThread extends Thread{
     //private static volatile int i;
 
     //after 1
-    //  private static volatile int i;
-    //  private static Object lock = new Object();
+      private static volatile int i;
+      private static Object lock = new Object();
 
     //after 2
-    StateObject st = new StateObject();
+    //StateObject st = new StateObject();
 
     public InterferenceThread(InterferenceExample checker){this.checker = checker;}
     public void run(){
         while(!checker.stop()){
             //before 2
-            //increment();
+            increment();
             //after 2
-            st.increment();
+            //st.increment();
         }
     }
     //before 1
     //public synchronized static void increment(){i++;}
     //after 1
-    //public void increment(){
-    //    synchronized (lock){
-    //        i++;
-    //    }
-    //}
+    public void increment(){
+        synchronized (lock){
+            i++;
+        }
+    }
     public int getI(){
         //before 2
-        //return i;
+        return i;
         //after 2
-        return st.getI();
+        //return st.getI();
     }
 }
 
