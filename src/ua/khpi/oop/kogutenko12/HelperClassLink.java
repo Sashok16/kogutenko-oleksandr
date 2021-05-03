@@ -1,17 +1,10 @@
 package ua.khpi.oop.kogutenko12;
 
-import ua.khpi.oop.kogutenko07.Shop;
-
 import java.beans.XMLDecoder;
 import java.beans.XMLEncoder;
 import java.io.*;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.Iterator;
-import java.util.Map;
 import java.util.NoSuchElementException;
-import java.util.Scanner;
 
 /**
  * The type Helper class link.

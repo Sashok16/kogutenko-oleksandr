@@ -1,10 +1,16 @@
-package ua.khpi.oop.kogutenko12;
+package ua.khpi.oop.kogutenko15;
 
 import java.io.*;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.Scanner;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+import java.util.function.Function;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -12,57 +18,21 @@ import java.util.regex.Pattern;
  * The type Interactive console.
  */
 public class InteractiveConsole {
-    /**
-     * The P.
-     */
     Pattern p;
-    /**
-     * The M.
-     */
     Matcher m;
     private String nickname;
-    /**
-     * The Answer deserialization.
-     */
-    int answerDeserialization = 0;
-    /**
-     * The Check.
-     */
     boolean check = true;
-    /**
-     * The Input.
-     */
     String input;
-    /**
-     * The Helper l.
-     */
-    HelperClassLink<Shops> helperL = new HelperClassLink<>();
-    /**
-     * The Scanner.
-     */
     Scanner scanner = new Scanner(System.in);
+    HelperClassLink<Shops> list = new HelperClassLink<>();
+    ThreadTask th_list = new ThreadTask(list);
 
-    /**
-     * Gets nikname.
-     *
-     * @return the nikname
-     */
     public String getNickname() {
         return nickname;
     }
-
-    /**
-     * Sets nikname.
-     *
-     * @param nickname the nikname
-     */
     public void setNickname(String nickname) {
         this.nickname = nickname;
     }
-
-    /**
-     * Start console.
-     */
     public void startConsole() {
         try {
             System.out.print("Input your nickname: ");
@@ -77,157 +47,81 @@ public class InteractiveConsole {
 
             while (check) {
                 System.out.println(
-                        "1 / input   \t-\t input from file\n" +
+                                "1 / input   \t-\t input from file\n" +
                                 "2 / show    \t-\t show information about shops\n" +
                                 "3 / add     \t-\t add one shop\n" +
                                 "4 / remove  \t-\t remove one shop\n" +
-                                "5 / switch  \t-\t switch to another list\n" +
+                                "5           \t-\t show list without thread" +
                                 "8 / fresh   \t-\t find fresh product\n" +
                                 "9 / sort    \t-\t sort linked list by fields\n" +
                                 "0 / exit    \t-\t exit and save data\n");
-                System.out.print(nickname + "@" + nickname + ": ");
-                //regex
+                System.out.print(nickname + "@" + nickname + "$: ");
+
                 input = scanner.nextLine();
-                //
+                list = th_list.getList();
                 switch (input) {
-                    case "\n": {
-                        System.out.print(nickname + "@" + nickname + ": ");
+                    case "1":
+                        //inputting
+                        ThreadList.TaskDeserializationList.deserialization(th_list);
                         break;
-                    }
-                    case "1": {
-                        System.out.println("LinkedList\n");
-                        System.out.print("what deserialization do you want?\n(1 - bin, 2 - xml, 3 - txt)\n>>> ");
-                        answerDeserialization = scanner.nextInt();
-                        switch (answerDeserialization) {
-                            case 1: {
-                                helperL.deserializationBIN();
-                                break;
-                            }
-                            case 2: {
-                                helperL.deserializationXML();
-                                break;
-                            }
-                            case 3: {
-                                deserializationTXT();
-                                break;
-                            }
-                            default: {
-                                System.out.println("don't have this method ;((");
-                                break;
-                            }
-                        }
+                    case "2":
+                        //printing
+                        ThreadList.TaskPrintList.print(th_list);
                         break;
-                    }
-                    case "2": {
-                        helperL.printList();
-                        break;
-                    }
-                    case "3": {
+                    case "3":
+                        //adding
                         Shops shop = new Shops();
                         shop.add();
-                        helperL.add(shop);
+                        th_list.list.list.add(shop);
                         break;
-                    }
-                    case "4": {
-                        helperL.printList();
+                    case "4":
+                        //removing
+                        th_list.list.printList();
                         Scanner sc = new Scanner(System.in);
                         System.out.print("Enter number of id: ");
                         //regex
                         int id = sc.nextInt();
                         //
-                        if (id < 0 || id > helperL.size()) {
+                        if (id < 0 || id > th_list.list.list.size()) {
                             throw new Exception("out of range!!!!!");
-                        } else if (!helperL.remove(id)) {
-                            System.out.println("NOT FOUND");
                         } else {
-                            helperL.printList();
+                            Shops shopR = th_list.list.list.remove(id);
+                            System.out.println(shopR.toString());
                         }
                         break;
-                    }
-                    case "0": {
-                        System.out.print("What save do you want? (1 - .txt; 2 - .bin; 3 - .xml)\n>>> ");
-                        Integer answ;
-                        //regex
-                        while (true) {
-                            p = Pattern.compile("[123]");
-                            answ = scanner.nextInt();
-                            m = p.matcher(answ.toString());
-                            if (m.matches()) {
-                                break;
-                            } else {
-                                System.out.println("Enter info correctly!!!");
-                            }
-                        }
-
-                        //
-                        switch (answ) {
-                            case 1: {
-                                serializationTXT();
-                                break;
-                            }
-                            case 2: {
-                                helperL.serializationBIN();
-                                break;
-                            }
-                            case 3: {
-                                helperL.serializationXML();
-                                break;
-                            }
-                            default: {
-                                System.out.println("We dont save your array (");
-                                break;
-                            }
-                        }
+                    case "5":
+                        list.printList();
+                        break;
+                    case "0":
+                        //exiting
+                        ThreadList.TaskSerializationList.serialization(th_list);
                         check = false;
                         break;
-                    }
-                    case "9": {
-                        System.out.println("Entrance to 9(sorting)");
-                        helperL = sort(helperL);
-                        System.out.println("list after:\n");
-                        System.out.println("\n------------------------------------\n");
-                        helperL.printList();
-                        System.out.println("\n------------------------------------\n");
-                    }
-                    case "8": {
+                    case "9":
+                        //sorting
+                        ThreadList.TaskSortList.sort(th_list);
+                        break;
+                    case "8":
+                        //freshening
                         System.out.println(findFresh());
                         break;
-                    }
-                    default: {
+                    default:
                         System.out.println("(" + input + ") I don't know this command :(");
                         break;
-                    }
                 }
             }
             System.out.println("GOOD BEY!!!");
         } catch (Exception e) {
             System.out.println(e);
-            check = false;
         }
     }
 
-    /**
-     * Serialization txt.
-     */
-    public void serializationTXT() {
-        File file = ConsoleFile.MenuFillOut(".txt");///pathname
-        try (PrintWriter pw = new PrintWriter(file.getName())) {
-            System.out.println("size :" + helperL.size());
-            for (Shops el : helperL) {
-                pw.write(el.toString());
-                System.out.print(el.toString());
-            }
-
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-    }
 
     /**
      * Deserializtion txt.
      */
     public void deserializationTXT() {
-        File file = ConsoleFile.MenuFillIn(".txt");///pathname
+        File file = ConsoleFile.MenuFillIn();///pathname
         try {
             BufferedReader br = new BufferedReader(new InputStreamReader(
                     new FileInputStream(file)));
@@ -315,7 +209,7 @@ public class InteractiveConsole {
                 shop.setPrice(Integer.parseInt(price));
                 shop.setDescription(description);
                 //System.out.println(shop.toString());
-                helperL.add(shop);
+                //results.add(shop);
             }
             System.out.println("Finish deserialization!!!");
         } catch (FileNotFoundException e) {
@@ -336,10 +230,7 @@ public class InteractiveConsole {
         System.out.println("\n------------------------------------\n");
         list.printList();
         System.out.println("\n------------------------------------\n");
-        Shops[] shops = new Shops[list.size()];
-        for (int i = 0; i < shops.length; i++) {
-            shops[i] = list.get(i);
-        }
+        Shops[] shops = list.toArray();
         Integer field;
         while (true) {
             System.out.print("Enter field sorted (1 - name; 2 - price; 3 - date\n>>>");
@@ -352,8 +243,6 @@ public class InteractiveConsole {
                 System.out.println("Enter info correctly!!!");
             }
         }
-
-        //
         bubbleSort(shops, field);
         return new HelperClassLink<>(shops);
     }
@@ -406,7 +295,8 @@ public class InteractiveConsole {
         String[] dateArr = dateStr.split("/");
         int currYear = Integer.parseInt(dateArr[0]), currMon = Integer.parseInt(dateArr[1]), currDay = Integer.parseInt(dateArr[2]);
         String str = "";
-        for (Shops shop : helperL) {
+        HelperClassLink<Shops> list = this.list;
+        for (Shops shop : list.list) {
             int prodY = shop.getDate().getYear();
             int prodM = shop.getDate().getMonth();
             int prodD = shop.getDate().getDay();

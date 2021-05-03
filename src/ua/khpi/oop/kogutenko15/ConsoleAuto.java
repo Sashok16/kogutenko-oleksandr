@@ -1,4 +1,4 @@
-package ua.khpi.oop.kogutenko12;
+package ua.khpi.oop.kogutenko15;
 
 import java.io.*;
 import java.text.DateFormat;
@@ -41,7 +41,7 @@ public class ConsoleAuto {
                         put("weight", "10");
                     }});
             System.out.println("new elem is\n" + newShop.toString());
-            hlAuto.add(newShop);
+            hlAuto.list.add(newShop);
             System.out.println("Container after adding\n----------------------------------------------------------------------------------------------------------------------");
             hlAuto.printList();
             System.out.println("----------------------------------------------------------------------------------------------------------------------");
@@ -50,7 +50,7 @@ public class ConsoleAuto {
             System.out.println("Container after sorting\n----------------------------------------------------------------------------------------------------------------------");
             hlAuto.printList();
             System.out.println("----------------------------------------------------------------------------------------------------------------------");
-            hlAuto.remove(hlAuto.size() - 1);
+            hlAuto.list.remove(hlAuto.list.size() - 1);
             System.out.println("Container after removing\n----------------------------------------------------------------------------------------------------------------------");
             hlAuto.printList();
             System.out.println("----------------------------------------------------------------------------------------------------------------------");
@@ -65,8 +65,8 @@ public class ConsoleAuto {
     private void serializationTXT() {
         File file = new File("D:\\eclips-workspace\\kogutenko-oleksandr\\src\\ua\\khpi\\oop\\txt10-" + new Random().nextInt() % 20 + ".txt");///pathname
         try (PrintWriter pw = new PrintWriter(new FileOutputStream(file))) {
-            System.out.println("size :" + hlAuto.size());
-            for (Shops el : hlAuto) {
+            System.out.println("size :" + hlAuto.list.size());
+            for (Shops el : hlAuto.list) {
                 pw.write(el.toString());
             }
 
@@ -162,7 +162,7 @@ public class ConsoleAuto {
                 shop.setUnit(unit);
                 shop.setPrice(Integer.parseInt(price));
                 shop.setDescription(description);
-                hlAuto.add(shop);
+                hlAuto.list.add(shop);
             }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -183,9 +183,9 @@ public class ConsoleAuto {
         System.out.println("\n------------------------------------\n");
         list.printList();
         System.out.println("\n------------------------------------\n");
-        Shops[] shops = new Shops[list.size()];
+        Shops[] shops = new Shops[list.list.size()];
         for (int i = 0; i < shops.length; i++) {
-            shops[i] = list.get(i);
+            shops[i] = list.list.get(i);
         }
         bubbleSort(shops, 2);
         return new HelperClassLink<>(shops);
@@ -239,7 +239,7 @@ public class ConsoleAuto {
         String[] dateArr = dateStr.split("/");
         int currYear = Integer.parseInt(dateArr[0]), currMon = Integer.parseInt(dateArr[1]), currDay = Integer.parseInt(dateArr[2]);
         String str = "";
-        for (Shops shop : hlAuto) {
+        for (Shops shop : hlAuto.list) {
             int prodY = shop.getDate().getYear();
             int prodM = shop.getDate().getMonth();
             int prodD = shop.getDate().getDay();

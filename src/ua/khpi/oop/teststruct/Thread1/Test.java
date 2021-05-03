@@ -1,18 +1,20 @@
 package ua.khpi.oop.teststruct.Thread1;
 
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.function.Function;
 
 public class Test{
 
     public static void main(String[] args) throws InterruptedException {
 // 1
-//        RandomRunThread.example();
+        RandomRunThread.example();
 // 2
 //        System.out.println("start interference");
-        new InterferenceExample().example();
+        // new InterferenceExample().example();
 //        System.out.println("end interference\n");
 // 3
-//        SeriesRunExample.example();
+        //SeriesRunExample.example();
+
     }
 }
 
@@ -27,7 +29,7 @@ class SeriesRunExample extends Thread{
     }
     public static void example(){
         Object waitObject = new Object();
-        for(int i = currentMax; i <= 5; i++){
+        for(int i = currentMax; i <= 20; i++){
             Thread thread = new SeriesRunExample(i, waitObject);
             thread.start();
         }
@@ -72,11 +74,11 @@ class StateObject{
 class InterferenceThread extends Thread{
     private final InterferenceExample checker;
     //before 1
-    //private static volatile int i;
+    private static volatile int i;
 
     //after 1
-      private static volatile int i;
-      private static Object lock = new Object();
+//      private static volatile int i;
+//      private static Object lock = new Object();
 
     //after 2
     //StateObject st = new StateObject();
@@ -91,13 +93,13 @@ class InterferenceThread extends Thread{
         }
     }
     //before 1
-    //public synchronized static void increment(){i++;}
+    public /*synchronized*/ static void increment(){i++;}
     //after 1
-    public void increment(){
-        synchronized (lock){
-            i++;
-        }
-    }
+//    public void increment(){
+//        synchronized (lock){
+//            i++;
+//        }
+//    }
     public int getI(){
         //before 2
         return i;

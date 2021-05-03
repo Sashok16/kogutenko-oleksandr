@@ -1,4 +1,4 @@
-package ua.khpi.oop.kogutenko12;
+package ua.khpi.oop.kogutenko15;
 
 import java.io.Serializable;
 import java.util.HashMap;
@@ -153,7 +153,7 @@ public class Shops implements Serializable {
      *
      * @return the id
      */
-    public int getId() {
+    public synchronized int getId() {
         return id;
     }
 
@@ -162,7 +162,7 @@ public class Shops implements Serializable {
      *
      * @param id the id
      */
-    public void setId(int id) {
+    public synchronized void setId(int id) {
         this.id = id;
     }
 
@@ -171,7 +171,7 @@ public class Shops implements Serializable {
      *
      * @return the name
      */
-    public String getName() {
+    public synchronized String getName() {
         return name;
     }
 
@@ -180,7 +180,7 @@ public class Shops implements Serializable {
      *
      * @param name the name
      */
-    public void setName(String name) {
+    public synchronized void setName(String name) {
         this.name = name;
     }
 
@@ -189,7 +189,7 @@ public class Shops implements Serializable {
      *
      * @return the unit
      */
-    public String getUnit() {
+    public synchronized String getUnit() {
         return unit;
     }
 
@@ -198,7 +198,7 @@ public class Shops implements Serializable {
      *
      * @param unit the unit
      */
-    public void setUnit(String unit) {
+    public synchronized void setUnit(String unit) {
         this.unit = unit;
     }
 
@@ -207,7 +207,7 @@ public class Shops implements Serializable {
      *
      * @return the count
      */
-    public int getCount() {
+    public synchronized int getCount() {
         return count;
     }
 
@@ -216,7 +216,7 @@ public class Shops implements Serializable {
      *
      * @param count the count
      */
-    public void setCount(int count) {
+    public synchronized void setCount(int count) {
         this.count = count;
     }
 
@@ -225,7 +225,7 @@ public class Shops implements Serializable {
      *
      * @return the date
      */
-    public Date getDate() {
+    public synchronized Date getDate() {
         return date;
     }
 
@@ -234,7 +234,7 @@ public class Shops implements Serializable {
      *
      * @param date the date
      */
-    public void setDate(Date date) {
+    public synchronized void setDate(Date date) {
         this.date = date;
     }
 
@@ -243,11 +243,11 @@ public class Shops implements Serializable {
      *
      * @param date the date
      */
-    public void setDate(String date) {
+    public synchronized void setDate(String date) {
         this.date.setDate(date);
     }
 
-    public String toString() {
+    public synchronized String toString() {
         String info = String.format(
                 "id: %-3d | name: %-10s | unit: %-4s | count: %-8d | price: %-8d | date: %s | description: %s\n",
                  id,        name,         unit,        count,        price,        date.GetDate(), getDescriptionInfo()
@@ -257,8 +257,9 @@ public class Shops implements Serializable {
 
     /**
      * Add.
+     * @return
      */
-    public void add() {
+    public synchronized Shops add() {
         //regex!!!!!!
         Pattern p;
         Matcher m;
@@ -357,13 +358,13 @@ public class Shops implements Serializable {
             regexLoop = true;
             while (regexLoop) {
                 System.out.print("Enter key: ");
-                p = Pattern.compile("[\\w]{3,15}");
+                p = Pattern.compile("[\\w]{15}");
                 key = sc.nextLine();
                 m = p.matcher(key);
                 if (m.matches()) {
                     while (regexLoop) {
                         System.out.print("Enter val: ");
-                        p = Pattern.compile("[\\w]{3,15}");
+                        p = Pattern.compile("[\\w]{15}");
                         val = sc.nextLine();
                         m = p.matcher(val);
                         if (m.matches()) {
@@ -383,6 +384,7 @@ public class Shops implements Serializable {
                 check = false;
             }
         }
+        return this;
     }
 
 

@@ -362,13 +362,13 @@ public class Shops implements Serializable {
             regexLoop = true;
             while(regexLoop){
                 System.out.print("Enter key: ");
-                p = Pattern.compile("[\\w]{15}");
+                p = Pattern.compile("[\\w]{3,15}");
                 key = sc.nextLine();
                 m = p.matcher(key);
                 if(m.matches()){
                     while(regexLoop){
                         System.out.print("Enter val: ");
-                        p = Pattern.compile("[\\w]{15}");
+                        p = Pattern.compile("[\\w]{3,15}");
                         val = sc.nextLine();
                         m = p.matcher(val);
                         if(m.matches()){
