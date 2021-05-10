@@ -17,12 +17,12 @@ public class InteractiveConsole
      * The Check.
      */
     boolean check = true, /**
- * The Check choicelist.
- */
-checkChoicelist = false, /**
- * The List.
- */
-list = false;
+    * The Check choicelist.
+    */
+    checkChoicelist = false, /**
+    * The List.
+    */
+    list = false;
     /**
      * The Input.
      */

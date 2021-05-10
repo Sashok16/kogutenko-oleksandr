@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<java version="16.0.1" class="java.beans.XMLDecoder">
+ <int>3</int>
+ <object class="ua.khpi.oop.kogutenko16.src.sample.model.Shops">
+  <void property="count">
+   <int>1</int>
+  </void>
+  <void property="description">
+   <object class="java.util.HashMap"/>
+  </void>
+  <void property="id">
+   <int>22</int>
+  </void>
+  <void property="name">
+   <string>name_changed</string>
+  </void>
+  <void property="price">
+   <int>10</int>
+  </void>
+  <void property="unit">
+   <string>l</string>
+  </void>
+ </object>
+ <object class="ua.khpi.oop.kogutenko16.src.sample.model.Shops">
+  <void property="count">
+   <int>2</int>
+  </void>
+  <void property="description">
+   <object class="java.util.HashMap"/>
+  </void>
+  <void property="id">
+   <int>2</int>
+  </void>
+  <void property="name">
+   <string>name_2</string>
+  </void>
+  <void property="price">
+   <int>3</int>
+  </void>
+  <void property="unit">
+   <string>liters</string>
+  </void>
+ </object>
+ <object class="ua.khpi.oop.kogutenko16.src.sample.model.Shops">
+  <void property="count">
+   <int>213</int>
+  </void>
+  <void property="description">
+   <object class="java.util.HashMap"/>
+  </void>
+  <void property="id">
+   <int>123</int>
+  </void>
+  <void property="name">
+   <string>new</string>
+  </void>
+  <void property="price">
+   <int>1</int>
+  </void>
+  <void property="unit">
+   <string>kg</string>
+  </void>
+ </object>
+</java>

@@ -108,12 +108,12 @@ public class ConsoleAuto {
                 }
 
                 Shops shop = new Shops();
-                shop.setId(Integer.parseInt(id));
-                shop.setCount(Integer.parseInt(count));
+                shop.setId(Integer.parseInt(id.trim()));
+                shop.setCount(Integer.parseInt(count.trim()));
                 shop.setName(name);
                 shop.setDate(date);
                 shop.setUnit(unit);
-                shop.setPrice(Integer.parseInt(price));
+                shop.setPrice(Integer.parseInt(price.trim()));
                 shop.setDescription(description);
                 hlAuto.add(shop);
             }

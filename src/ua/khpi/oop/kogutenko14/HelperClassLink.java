@@ -235,7 +235,6 @@ public class HelperClassLink<T> implements Iterable<T> {
         String str = "\n";
         for (T item : this) {
             str += item.toString();
-            Thread.sleep(100);
         }
         System.out.println(str);
     }
@@ -575,7 +574,6 @@ public class HelperClassLink<T> implements Iterable<T> {
                     swap(array, i, i - 1);
                     sorted = false;
                 }
-                Thread.sleep(100);
             }
         }
         return array;

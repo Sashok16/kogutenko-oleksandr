@@ -148,6 +148,9 @@ public class Shops implements Serializable {
         setDescription(description);
     }
 
+
+
+
     /**
      * Gets id.
      *

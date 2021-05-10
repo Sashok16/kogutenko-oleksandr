@@ -1,14 +1,10 @@
 package ua.khpi.oop.kogutenko11;
 
-import ua.khpi.oop.kogutenko07.Shop;
-
 import java.beans.XMLDecoder;
 import java.beans.XMLEncoder;
 import java.io.*;
 import java.util.Iterator;
-import java.util.Map;
 import java.util.NoSuchElementException;
-import java.util.Scanner;
 
 /**
  * The type Helper class link.
