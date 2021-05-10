@@ -1,5 +1,4 @@
-package ua.khpi.oop.kogutenko16.src.sample;
-
+package ua.khpi.oop.kogutenko16.src.sample.model;
 
 import java.io.Serializable;
 
@@ -20,6 +19,12 @@ public class Date implements Serializable {
         this.month = 1;
     }
 
+    Date(Date date) {
+        this.day = date.day;
+        this.month = date.month;
+        this.year = date.year;
+    }
+
     /**
      * Instantiates a new Date.
      *
@@ -27,7 +32,7 @@ public class Date implements Serializable {
      * @param mon  the mon
      * @param year the year
      */
-    Date(int day, int mon, int year) {
+    public Date(int day, int mon, int year) {
         this.day = day;
         this.year = year;
         this.month = mon;
@@ -154,4 +159,3 @@ public class Date implements Serializable {
     }
 
 }
-

@@ -4,13 +4,7 @@ import java.io.*;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.List;
 import java.util.Scanner;
-import java.util.concurrent.Callable;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
-import java.util.function.Function;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -95,7 +89,7 @@ public class InteractiveConsole {
                     case "0":
                         //exiting
                         ThreadList.TaskSerializationList.serialization(th_list);
-                        check = false;
+                        System.exit(0);
                         break;
                     case "9":
                         //sorting
